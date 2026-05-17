@@ -58,10 +58,11 @@ func runShowConfig(cmd *cobra.Command, args []string) error {
 	fmt.Println("Effective configuration:")
 	fmt.Println()
 	fmt.Printf("  Gateway:\n")
-	fmt.Printf("    URL:      %s\n", cfg.Gateway.BaseURL())
-	fmt.Printf("    Host:     %s\n", cfg.Gateway.Host)
-	fmt.Printf("    Port:     %d\n", cfg.Gateway.Port)
-	fmt.Printf("    Use TLS:  %v\n", cfg.Gateway.UseTLS)
+	fmt.Printf("    URL:              %s\n", cfg.Gateway.BaseURL())
+	fmt.Printf("    Host:             %s\n", cfg.Gateway.Host)
+	fmt.Printf("    Port:             %d\n", cfg.Gateway.Port)
+	fmt.Printf("    Use TLS:          %v\n", cfg.Gateway.UseTLS)
+	fmt.Printf("    Insecure Skip Verify: %v\n", cfg.Gateway.InsecureSkipVerify)
 	fmt.Println()
 
 	if cfg.Auth.Username != "" {

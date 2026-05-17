@@ -2,6 +2,7 @@ package api
 
 import (
 	"context"
+	"crypto/tls"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -26,12 +27,19 @@ type Client struct {
 
 // NewClient creates a new API client.
 func NewClient(cfg *config.Config) *Client {
+	transport := &http.Transport{
+		TLSClientConfig: &tls.Config{
+			InsecureSkipVerify: cfg.Gateway.InsecureSkipVerify,
+		},
+	}
+
 	return &Client{
 		baseURL:    cfg.Gateway.BaseURL(),
 		timeout:    cfg.Request.Timeout(),
 		maxRetries: cfg.Request.MaxRetries,
 		httpClient: &http.Client{
-			Timeout: cfg.Request.Timeout(),
+			Timeout:   cfg.Request.Timeout(),
+			Transport: transport,
 		},
 	}
 }

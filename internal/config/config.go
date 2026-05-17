@@ -18,9 +18,10 @@ type Config struct {
 }
 
 type GatewayConfig struct {
-	Host   string `toml:"host"`
-	Port   int    `toml:"port"`
-	UseTLS bool   `toml:"use_tls"`
+	Host              string `toml:"host"`
+	Port              int    `toml:"port"`
+	UseTLS            bool   `toml:"use_tls"`
+	InsecureSkipVerify bool   `toml:"insecure_skip_verify"`
 }
 
 type AuthConfig struct {
@@ -128,6 +129,10 @@ func (c *Config) mergeFrom(other *Config) {
 	if other.Gateway.UseTLS {
 		c.Gateway.UseTLS = other.Gateway.UseTLS
 	}
+	// Handle bool explicitly
+	if other.Gateway.InsecureSkipVerify {
+		c.Gateway.InsecureSkipVerify = other.Gateway.InsecureSkipVerify
+	}
 
 	if other.Auth.Username != "" {
 		c.Auth.Username = other.Auth.Username
@@ -214,9 +219,10 @@ func (c *Config) Validate() error {
 func DefaultConfig() *Config {
 	return &Config{
 		Gateway: GatewayConfig{
-			Host:   "127.0.0.1",
-			Port:   5000,
-			UseTLS: false,
+			Host:              "127.0.0.1",
+			Port:              5000,
+			UseTLS:            false,
+			InsecureSkipVerify: true, // Default true for localhost dev
 		},
 		Output: OutputConfig{
 			DefaultFormat: "json",

@@ -1,0 +1,35 @@
+# IB Gateway Configuration
+# Copy this file to config.toml and fill in your values
+
+[gateway]
+# Client Portal Web API base URL (default: localhost)
+host = "127.0.0.1"
+# Port (default: 5000)
+port = 5000
+# Use HTTPS (default: false for local gateway)
+use_tls = false
+
+[auth]
+# Username for IB account (leave empty for interactive login)
+username = ""
+# Password for IB account (leave empty for interactive login)
+# WARNING: Storing passwords in config files is not recommended for production
+password = ""
+
+[output]
+# Default output format: json, csv, or table
+default_format = "json"
+# Pretty print JSON output
+pretty = true
+
+[request]
+# Default bar type: TRADES, BID, ASK, MIDPOINT, SCHEDULE
+bar_type = "TRADES"
+# Default bar size (without duration suffix)
+bar_size = "1"
+# Default bar unit: S (seconds), D (days), W (weeks), M (months), Y (years)
+bar_unit = "min"
+# Request timeout in seconds
+timeout_seconds = 30
+# Max retries for transient failures
+max_retries = 3

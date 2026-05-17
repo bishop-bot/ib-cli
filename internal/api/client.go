@@ -11,8 +11,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/bishop-bot/datajobs-go/ib-cli/internal/config"
-	"github.com/bishop-bot/datajobs-go/ib-cli/internal/models"
+	"github.com/bishop-bot/ib-cli/internal/config"
+	"github.com/bishop-bot/ib-cli/internal/models"
 )
 
 // Client wraps the IB Client Portal Web API.

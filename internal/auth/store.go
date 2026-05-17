@@ -15,7 +15,7 @@ import (
 
 	"golang.org/x/crypto/pbkdf2"
 
-	"github.com/bishop-bot/datajobs-go/ib-cli/internal/models"
+	"github.com/bishop-bot/ib-cli/internal/models"
 )
 
 // ErrNoSession is returned when no saved session exists.

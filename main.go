@@ -3,7 +3,7 @@ package main
 import (
 	"os"
 
-	"github.com/bishop-bot/datajobs-go/ib-cli/cmd"
+	"github.com/bishop-bot/ib-cli/cmd"
 )
 
 func main() {

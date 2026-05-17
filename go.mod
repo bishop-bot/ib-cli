@@ -1,4 +1,4 @@
-module github.com/bishop-bot/datajobs-go/ib-cli
+module github.com/bishop-bot/ib-cli
 
 go 1.24
 

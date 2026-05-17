@@ -83,9 +83,14 @@ func (c *Client) AuthStatus(ctx context.Context) (*models.AuthStatus, error) {
 	}
 	defer resp.Body.Close()
 
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return nil, fmt.Errorf("reading response: %w", err)
+	}
+
 	var result models.AuthStatus
-	if err := json.NewDecoder(resp.Body).Decode(&result); err != nil {
-		return nil, fmt.Errorf("decoding response: %w", err)
+	if err := json.Unmarshal(body, &result); err != nil {
+		return nil, fmt.Errorf("decoding response: %w\nBody: %s", err, string(body))
 	}
 	return &result, nil
 }

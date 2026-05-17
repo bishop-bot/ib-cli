@@ -83,33 +83,67 @@ func TestHistoricalDataResponse_JSONSerialization(t *testing.T) {
 	}
 }
 
-func TestAuthStatus_IsAuthenticated(t *testing.T) {
+func TestAuthStatus_JSONParsing(t *testing.T) {
+	// Simulate IB API response - fail is empty string when not failed
+	jsonData := `{"authenticated":true,"connected":true,"fail":"","message":""}`
+
+	var status AuthStatus
+	if err := json.Unmarshal([]byte(jsonData), &status); err != nil {
+		t.Fatalf("json.Unmarshal() error = %v", err)
+	}
+
+	if !status.IsAuthenticated() {
+		t.Error("IsAuthenticated() = false, want true")
+	}
+	if !status.IsConnected() {
+		t.Error("IsConnected() = false, want true")
+	}
+	if status.IsFailed() {
+		t.Error("IsFailed() = true, want false")
+	}
+}
+
+func TestAuthStatus_Methods(t *testing.T) {
 	tests := []struct {
-		name  string
-		auth  AuthStatus
-		isAuth bool
+		name    string
+		auth    AuthStatus
+		wantAuth bool
+		wantConn bool
+		wantFail bool
 	}{
 		{
-			name:   "authenticated",
-			auth:   AuthStatus{IsAuthenticated: true, IsConnected: true},
-			isAuth: true,
+			name:    "authenticated",
+			auth:    AuthStatus{Authenticated: true, Connected: true},
+			wantAuth: true,
+			wantConn: true,
+			wantFail: false,
 		},
 		{
-			name:   "not authenticated",
-			auth:   AuthStatus{IsAuthenticated: false, IsConnected: true},
-			isAuth: false,
+			name:    "not authenticated",
+			auth:    AuthStatus{Authenticated: false, Connected: true},
+			wantAuth: false,
+			wantConn: true,
+			wantFail: false,
 		},
 		{
-			name:   "failed",
-			auth:   AuthStatus{IsAuthenticated: false, IsFailed: true},
-			isAuth: false,
+			name:    "failed",
+			auth:    AuthStatus{Authenticated: false, Connected: false, Fail: "auth error"},
+			wantAuth: false,
+			wantConn: false,
+			wantFail: true,
 		},
 	}
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if tt.auth.IsAuthenticated != tt.isAuth {
-				t.Errorf("IsAuthenticated = %v, want %v", tt.auth.IsAuthenticated, tt.isAuth)
+			if tt.auth.IsAuthenticated() != tt.wantAuth {
+				t.Errorf("IsAuthenticated() = %v, want %v", tt.auth.IsAuthenticated(), tt.wantAuth)
+			}
+			if tt.auth.IsConnected() != tt.wantConn {
+				t.Errorf("IsConnected() = %v, want %v", tt.auth.IsConnected(), tt.wantConn)
+			}
+			if tt.auth.IsFailed() != tt.wantFail {
+				t.Errorf("IsFailed() = %v, want %v", tt.auth.IsFailed(), tt.wantFail)
 			}
 		})
 	}

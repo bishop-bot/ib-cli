@@ -128,11 +128,8 @@ func runLogin(cmd *cobra.Command, args []string) error {
 		return fmt.Errorf("login failed: %w", err)
 	}
 
-	if !resp.IsAuthenticated {
-		if resp.ErrorMessage != "" {
-			return fmt.Errorf("authentication failed: %s", resp.ErrorMessage)
-		}
-		return fmt.Errorf("authentication failed")
+	if !resp.IsAuthenticated() {
+		return fmt.Errorf("authentication failed: %s", resp.Message)
 	}
 
 	info("Authentication successful ✓")
@@ -209,7 +206,7 @@ func restoreSession(client *api.Client, cfg *config.Config) error {
 		return fmt.Errorf("verifying session: %w", err)
 	}
 
-	if !authStatus.IsAuthenticated {
+	if !authStatus.IsAuthenticated() {
 		// Try to delete expired session
 		store.Delete()
 		return fmt.Errorf("session expired or invalid. Please login again")
@@ -315,14 +312,14 @@ func runStatus(cmd *cobra.Command, args []string) error {
 
 	// Output
 	if verbose {
-		data, _ := json.MarshalIndent(resp, "", "  ")
-		fmt.Println(string(data))
+		info("Authenticated: %v, Connected: %v, Failed: %v",
+			resp.IsAuthenticated(), resp.IsConnected(), resp.IsFailed())
 		info("Gateway: %s", cfg.Gateway.BaseURL())
 		info("Saved session exists: %v", hasSession)
 	} else {
-		if resp.IsAuthenticated {
+		if resp.IsAuthenticated() {
 			info("Status: Authenticated ✓")
-		} else if resp.IsConnected {
+		} else if resp.IsConnected() {
 			info("Status: Connected (not authenticated)")
 		} else if hasSession {
 			info("Status: Session saved (not connected)")

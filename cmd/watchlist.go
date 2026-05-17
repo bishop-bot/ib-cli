@@ -78,7 +78,7 @@ func runListWatchlists(cmd *cobra.Command, args []string) error {
 	if err != nil {
 		return fmt.Errorf("auth status: %w", err)
 	}
-	if !auth.IsAuthenticated {
+	if !auth.IsAuthenticated() {
 		return fmt.Errorf("not authenticated. Run 'ib-cli auth login' first")
 	}
 
@@ -117,7 +117,7 @@ func runGetWatchlist(cmd *cobra.Command, args []string) error {
 	if err != nil {
 		return fmt.Errorf("auth status: %w", err)
 	}
-	if !auth.IsAuthenticated {
+	if !auth.IsAuthenticated() {
 		return fmt.Errorf("not authenticated. Run 'ib-cli auth login' first")
 	}
 

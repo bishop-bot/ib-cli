@@ -71,12 +71,28 @@ type ServerVersion struct {
 }
 
 // AuthStatus represents the current authentication state.
+// Note: IB API uses 'authenticated', 'connected', 'fail' (string) not isAuthenticated.
 type AuthStatus struct {
-	IsAuthenticated bool   `json:"isAuthenticated"`
-	IsConnected     bool   `json:"isConnected"`
-	IsFailed        bool   `json:"isFailed"`
-	ErrorMessage    string `json:"errorMsg,omitempty"`
-	Tokens          Tokens `json:"tokens,omitempty"`
+	Authenticated bool   `json:"authenticated"`
+	Connected     bool   `json:"connected"`
+	Fail          string `json:"fail"`           // Empty string = not failed, non-empty = error message
+	Message       string `json:"message,omitempty"`
+	Tokens        Tokens `json:"tokens,omitempty"`
+}
+
+// IsAuthenticated returns true if authenticated.
+func (a *AuthStatus) IsAuthenticated() bool {
+	return a.Authenticated
+}
+
+// IsConnected returns true if connected.
+func (a *AuthStatus) IsConnected() bool {
+	return a.Connected
+}
+
+// IsFailed returns true if authentication failed (fail field is non-empty).
+func (a *AuthStatus) IsFailed() bool {
+	return a.Fail != ""
 }
 
 // Tokens holds authentication tokens from the gateway.

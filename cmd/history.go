@@ -142,8 +142,8 @@ func runHistory(cmd *cobra.Command, args []string) error {
 		return fmt.Errorf("auth status: %w", err)
 	}
 
-	if !auth.IsAuthenticated {
-		return fmt.Errorf("not authenticated. Run 'ib-cli login' first")
+	if !auth.IsAuthenticated() {
+		return fmt.Errorf("not authenticated. Run 'ib-cli auth login' first")
 	}
 
 	// Fetch historical data

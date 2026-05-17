@@ -178,14 +178,6 @@ func runHistory(cmd *cobra.Command, args []string) error {
 }
 
 func printCSV(data *models.HistoricalDataResponse) error {
-	fmt.Println("serverId,symbol,text,priceFactor,startTime,timePeriod,barLength,points")
-
-	// Print header based on first bar
-	if len(data.Data) > 0 {
-		fmt.Println("# Bar fields: timestamp,open,high,low,close,volume")
-	}
-
-	// Print bars as CSV
 	fmt.Println("timestamp,open,high,low,close,volume")
 	for _, bar := range data.Data {
 		ts := time.UnixMilli(bar.Timestamp).UTC().Format(time.RFC3339)

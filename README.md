@@ -14,7 +14,7 @@ A production-grade CLI for Interactive Broker's Client Portal Web API.
 ## Prerequisites
 
 - Go 1.21+
-- [IB Client Portal Gateway](https://www.interactivebrokers.com/campus/trading-concepts/what-is-the-client-portal-gateway/) running locally (default: `http://127.0.0.1:5000`)
+- [IB Client Portal Gateway](https://www.interactivebrokers.com/campus/trading-concepts/what-is-the-client-portal-gateway/) running locally (default: `https://127.0.0.1:5001`)
 
 ## Quick Start
 
@@ -34,12 +34,14 @@ cp config.toml.example config.toml
 # Save session for later use
 ./ib-cli auth login --username USER --password PASS --save
 
-# Query historical data
-./ib-cli history AAPL --bar 1 --unit min --duration "1 D"
+# Query historical data by symbol (auto-lookup contract ID)
+./ib-cli history AAPL --period 1d --bar 1min
+
+# Query by contract ID directly
+./ib-cli history --conid 265598 --exchange SMART --period 1d --bar 1min
 
 # Check status
 ./ib-cli auth status
-./ib-cli server version
 ```
 
 ## Configuration
@@ -49,8 +51,9 @@ Copy `config.toml.example` to `config.toml` and customize:
 ```toml
 [gateway]
 host = "127.0.0.1"
-port = 5000
-use_tls = false
+port = 5001
+use_tls = true
+insecure_skip_verify = true
 
 [output]
 default_format = "json"
@@ -60,6 +63,7 @@ pretty = true
 Environment variables override config values:
 - `IB_GATEWAY_HOST`
 - `IB_GATEWAY_PORT`
+- `IB_GATEWAY_USE_TLS`
 - `IB_AUTH_USERNAME`
 - `IB_AUTH_PASSWORD`
 
@@ -94,22 +98,34 @@ Manage authentication.
 Query historical market data.
 
 ```bash
-# 1 day of 1-minute bars
-./ib-cli history AAPL --bar 1 --unit min --duration "1 D"
+# 1 day of 1-minute bars (lookup by symbol)
+./ib-cli history AAPL --period 1d --bar 1min
 
-# Weekly bars for 1 month
-./ib-cli history SPY --bar 1 --unit W --duration "1 M" -e SMART -t STOCK
+# By contract ID directly (faster, no lookup)
+./ib-cli history --conid 265598 --exchange SMART --period 1d --bar 1min
 
-# Specific time range
-./ib-cli history AAPL --start 2024-01-01T00:00:00Z --end 2024-01-31T23:59:59Z
+# 1 week of 5-minute bars
+./ib-cli history AAPL --period 1w --bar 5min
 
-# Output as CSV
-./ib-cli history AAPL --duration "5 D" --output csv > data.csv
+# Include data outside regular trading hours
+./ib-cli history AAPL --period 1w --bar 15min --outside-rth
+
+# Output as CSV (header + data rows only)
+./ib-cli history AAPL --period 1d --bar 1min --format csv > data.csv
 
 # Use with saved session
 ./ib-cli auth login --restore
-./ib-cli history AAPL -d "1 W"
+./ib-cli history AAPL --period 1w --bar 1min
 ```
+
+**Flags:**
+- `-i, --conid` Contract ID (optional if symbol provided)
+- `-e, --exchange` Exchange (default: SMART)
+- `-p, --period` Duration (e.g., 1d, 1w, 1m)
+- `-b, --bar` Bar size (e.g., 1min, 5min, 1h, 1d)
+- `-o, --outside-rth` Include data outside regular trading hours
+- `-S, --source` Data source (Trades, Midpoint, Bid_Ask)
+- `-f, --format` Output format: json (default) or csv
 
 ### `watchlist`
 Manage watchlists.
@@ -117,9 +133,6 @@ Manage watchlists.
 ```bash
 # List all watchlists
 ./ib-cli watchlist list
-
-# List as table
-./ib-cli watchlist list --format table
 
 # Get specific watchlist
 ./ib-cli watchlist get <watchlist-id>
@@ -134,33 +147,40 @@ Gateway server commands.
 ```
 
 ### `contract`
-Contract lookup.
+Contract lookup via secdef search.
 
 ```bash
 ./ib-cli contract lookup AAPL
-./ib-cli contract lookup ES --exchange SMART --type FUT
+./ib-cli contract lookup ES --exchange SMART
 ```
 
-## Bar Types
+## Bar Sizes
 
-| Type | Description |
+| Size | Description |
 |------|-------------|
-| `TRADES` | Standard price/volume bars |
-| `BID` | Bid prices |
-| `ASK` | Ask prices |
-| `MIDPOINT` | Midpoint of bid/ask |
-| `SCHEDULE` | Trading schedule info |
+| `1min` | 1 minute |
+| `2min` | 2 minutes |
+| `3min` | 3 minutes |
+| `5min` | 5 minutes |
+| `10min` | 10 minutes |
+| `15min` | 15 minutes |
+| `30min` | 30 minutes |
+| `1h` | 1 hour |
+| `2h`, `3h`, `4h`, `8h` | Hour bars |
+| `1d` | Daily bar |
+| `1w` | Weekly bar |
+| `1m` | Monthly bar |
 
-## Bar Units
+## Periods
 
-| Unit | Description |
-|------|-------------|
-| `S` | Seconds |
-| `min` | Minutes |
-| `D` | Days |
-| `W` | Weeks |
-| `M` | Months |
-| `Y` | Years |
+| Period | Description |
+|--------|-------------|
+| `1-30min` | Minutes (e.g., 30min) |
+| `1-8h` | Hours (e.g., 2h) |
+| `1-1000d` | Days (e.g., 1d, 100d) |
+| `1-792w` | Weeks (e.g., 1w, 4w) |
+| `1-182m` | Months (e.g., 1m, 6m) |
+| `1-15y` | Years (e.g., 1y) |
 
 ## Architecture
 

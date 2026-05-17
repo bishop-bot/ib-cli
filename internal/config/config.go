@@ -4,10 +4,9 @@ import (
 	"fmt"
 	"os"
 	"strconv"
-	"strings"
 	"time"
 
-	"github.com/spf13/viper"
+	"github.com/pelletier/go-toml/v2"
 )
 
 // Config holds all configuration for the CLI.
@@ -64,37 +63,45 @@ var Default *Config
 
 // Load reads configuration from file and environment variables.
 func Load(configPath string) (*Config, error) {
-	v := viper.New()
+	cfg := DefaultConfig()
 
-	// Set config file
+	// Determine config file path
+	var configFile string
 	if configPath != "" {
-		v.SetConfigFile(configPath)
+		configFile = configPath
 	} else {
 		// Search for config in standard locations
-		v.SetConfigName("config")
-		v.SetConfigType("toml")
-		v.AddConfigPath(".")
-		v.AddConfigPath("$HOME/.ib-cli")
-		v.AddConfigPath("/etc/ib-cli")
+		paths := []string{
+			"config.toml",
+		}
+		if home, err := os.UserHomeDir(); err == nil {
+			paths = append(paths, home+"/.ib-cli/config.toml")
+		}
+		paths = append(paths, "/etc/ib-cli/config.toml")
+
+		for _, p := range paths {
+			if _, err := os.Stat(p); err == nil {
+				configFile = p
+				break
+			}
+		}
 	}
 
-	// Environment variable overrides
-	v.SetEnvPrefix("IB")
-	v.AutomaticEnv()
-	v.SetEnvKeyReplacer(strings.NewReplacer(".", "_"))
+	// Read config file if found
+	if configFile != "" {
+		data, err := os.ReadFile(configFile)
+		if err != nil {
+			return nil, fmt.Errorf("reading config file: %w", err)
+		}
 
-	// Read config file
-	var cfg Config
-	if err := v.ReadInConfig(); err != nil {
-		if _, ok := err.(viper.ConfigFileNotFoundError); !ok {
-			return nil, fmt.Errorf("reading config: %w", err)
+		// Parse TOML directly
+		var fileCfg Config
+		if err := toml.Unmarshal(data, &fileCfg); err != nil {
+			return nil, fmt.Errorf("parsing config: %w", err)
 		}
-		// Config file not found, use defaults
-		cfg = *DefaultConfig()
-	} else {
-		if err := v.Unmarshal(&cfg); err != nil {
-			return nil, fmt.Errorf("unmarshaling config: %w", err)
-		}
+
+		// Merge file config into defaults
+		cfg.mergeFrom(&fileCfg)
 	}
 
 	// Apply environment variable overrides
@@ -105,8 +112,53 @@ func Load(configPath string) (*Config, error) {
 		return nil, fmt.Errorf("config validation: %w", err)
 	}
 
-	Default = &cfg
-	return &cfg, nil
+	Default = cfg
+	return cfg, nil
+}
+
+// mergeFrom merges non-zero values from another config.
+func (c *Config) mergeFrom(other *Config) {
+	if other.Gateway.Host != "" {
+		c.Gateway.Host = other.Gateway.Host
+	}
+	if other.Gateway.Port != 0 {
+		c.Gateway.Port = other.Gateway.Port
+	}
+	// Bool fields - only override if explicitly set to true
+	if other.Gateway.UseTLS {
+		c.Gateway.UseTLS = other.Gateway.UseTLS
+	}
+
+	if other.Auth.Username != "" {
+		c.Auth.Username = other.Auth.Username
+	}
+	if other.Auth.Password != "" {
+		c.Auth.Password = other.Auth.Password
+	}
+
+	if other.Output.DefaultFormat != "" {
+		c.Output.DefaultFormat = other.Output.DefaultFormat
+	}
+	// Handle bool explicitly
+	if other.Output.Pretty {
+		c.Output.Pretty = other.Output.Pretty
+	}
+
+	if other.Request.BarType != "" {
+		c.Request.BarType = other.Request.BarType
+	}
+	if other.Request.BarSize != "" {
+		c.Request.BarSize = other.Request.BarSize
+	}
+	if other.Request.BarUnit != "" {
+		c.Request.BarUnit = other.Request.BarUnit
+	}
+	if other.Request.TimeoutSecs != 0 {
+		c.Request.TimeoutSecs = other.Request.TimeoutSecs
+	}
+	if other.Request.MaxRetries != 0 {
+		c.Request.MaxRetries = other.Request.MaxRetries
+	}
 }
 
 func (c *Config) applyEnvOverrides() {
@@ -117,6 +169,10 @@ func (c *Config) applyEnvOverrides() {
 		if p, err := strconv.Atoi(port); err == nil {
 			c.Gateway.Port = p
 		}
+	}
+	// Handle IB_GATEWAY_USE_TLS
+	if useTLS := os.Getenv("IB_GATEWAY_USE_TLS"); useTLS != "" {
+		c.Gateway.UseTLS = useTLS == "true" || useTLS == "1" || useTLS == "yes"
 	}
 	if username := os.Getenv("IB_AUTH_USERNAME"); username != "" {
 		c.Auth.Username = username

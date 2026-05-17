@@ -281,34 +281,48 @@ func runStatus(cmd *cobra.Command, args []string) error {
 		return fmt.Errorf("loading config: %w", err)
 	}
 
+	if verbose {
+		info("Config: %s", cfg.Gateway.BaseURL())
+	}
+
 	client := api.NewClient(cfg)
 
 	// Check saved session
 	store, _ := auth.NewStore("check")
 	hasSession := store.Exists()
 
+	if verbose {
+		info("Checking auth status at %s...", cfg.Gateway.BaseURL())
+	}
+
 	// Check auth status
 	resp, err := client.AuthStatus(ctx)
 	if err != nil {
 		if verbose {
 			info("Connection error: %v", err)
+			info("Gateway URL: %s", cfg.Gateway.BaseURL())
 		}
-		hasSession = false
-		resp = nil
+		// Gateway unreachable or not authenticated
+		if hasSession {
+			info("Status: Session saved (gateway unreachable)")
+			info("Hint: Gateway may be offline. URL: %s", cfg.Gateway.BaseURL())
+			return nil
+		}
+		info("Status: Not authenticated")
+		info("Gateway: %s (unreachable)", cfg.Gateway.BaseURL())
+		return nil
 	}
 
 	// Output
 	if verbose {
-		if resp != nil {
-			data, _ := json.MarshalIndent(resp, "", "  ")
-			fmt.Println(string(data))
-		}
+		data, _ := json.MarshalIndent(resp, "", "  ")
+		fmt.Println(string(data))
 		info("Gateway: %s", cfg.Gateway.BaseURL())
 		info("Saved session exists: %v", hasSession)
 	} else {
-		if resp != nil && resp.IsAuthenticated {
+		if resp.IsAuthenticated {
 			info("Status: Authenticated ✓")
-		} else if resp != nil && resp.IsConnected {
+		} else if resp.IsConnected {
 			info("Status: Connected (not authenticated)")
 		} else if hasSession {
 			info("Status: Session saved (not connected)")

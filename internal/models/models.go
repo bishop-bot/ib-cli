@@ -5,63 +5,66 @@ import "time"
 // HistoricalDataParams holds parameters for historical data requests.
 // See: https://www.interactivebrokers.com/campus/ibkr-api-page/cpapi-v1/#hist-md
 type HistoricalDataParams struct {
-	// ConID is the contract ID (leave empty to look up by symbol)
-	ConID string `long:"conid" description:"Contract ID (conId)"`
-	// Symbol is the security symbol (e.g., AAPL, ES)
-	Symbol string `long:"symbol" short:"s" description:"Security symbol" required:"true"`
+	// ConID is the contract ID (required by IB API)
+	ConID string `json:"-"`
+	// Symbol is the security symbol (e.g., AAPL, ES) - used for lookup only
+	Symbol string `json:"-"`
 	// Exchange where the security is listed
-	Exchange string `long:"exchange" short:"e" description:"Exchange (e.g., SMART, NYSE)"`
-	// SecType is the security type
-	SecType string `long:"type" short:"t" description:"Security type: STOCK, OPT, FUT, etc."`
-	// Exchange for the exchange to route orders to
-	ExchangeRoute string `long:"exchange-route" description:"Exchange for routing"`
-	// StartTime is the query start time (RFC3339 format)
-	StartTime string `long:"start" short:"S" description:"Start time (RFC3339)"`
-	// EndTime is the query end time (RFC3339 format)
-	EndTime string `long:"end" short:"E" description:"End time (RFC3339)"`
-	// BarSize is the bar duration (e.g., 1, 5, 15, 1h, 1d)
-	BarSize string `long:"bar-size" short:"b" description:"Bar size (e.g., 1, 5, 15, 1h, 1d)"`
-	// BarUnit is the bar unit (S, D, W, M, Y)
-	BarUnit string `long:"bar-unit" short:"u" description:"Bar unit (S, min, D, W, M, Y)"`
-	// BarType is the type of data (TRADES, BID, ASK, MIDPOINT, SCHEDULE)
-	BarType string `long:"bar-type" short:"m" description:"Bar type (TRADES, BID, ASK, MIDPOINT, SCHEDULE)"`
-	// Duration is the total time to query (e.g., "1 D", "1 W", "1 M")
-	Duration string `long:"duration" short:"d" description:"Duration (e.g., 1 D, 1 W, 1 M)"`
-	// OutsideRTH includes data outside regular trading hours
-	OutsideRTH bool `long:"outside-rth" description:"Include data outside regular trading hours"`
-	// FormatDate controls date formatting in response
-	FormatDate int `long:"format-date" description:"Date format (1=unix epoch, 2=RFC3339)"`
-	// UseRTH restricts to regular trading hours only
-	UseRTH bool `long:"use-rth" description:"Use regular trading hours only"`
-	// Limit the number of bars returned
-	Limit int `long:"limit" short:"l" description:"Maximum number of bars"`
-	// OverrideSpacing allows non-standard bar spacing
-	OverrideSpacing bool `long:"override-spacing" description:"Override default spacing"`
+	Exchange string `json:"-"`
+	// Period is the overall duration for which data should be returned.
+	// Format: {1-30}min, {1-8}h, {1-1000}d, {1-792}w, {1-182}m, {1-15}y
+	Period string `json:"-"`
+	// Bar is the individual bar size/interval.
+	// Possible values: 1min, 2min, 3min, 5min, 10min, 15min, 30min, 1h, 2h, 3h, 4h, 8h, 1d, 1w, 1m
+	Bar string `json:"-"`
+	// StartTime is the starting date of the request duration (YYYYMMDD-HH:mm:ss format)
+	StartTime string `json:"-"`
+	// EndTime is the ending date of the request duration
+	EndTime string `json:"-"`
+	// OutsideRTH determines if you want data after regular trading hours
+	OutsideRTH bool `json:"-"`
+	// Source is the type of data to be returned: Trades, Midpoint, Bid_Ask
+	Source string `json:"-"`
+}
+
+// SetConIDFromSymbol resolves the conid from the symbol (called before API request)
+func (p *HistoricalDataParams) SetConIDFromSymbol(conid string) {
+	p.ConID = conid
 }
 
 // Bar represents a single OHLCV bar from historical data.
+// Per IB API: data array contains objects with o, c, h, l, v, t fields.
 type Bar struct {
-	Time    string  `json:"time"`
-	Open    float64 `json:"open"`
-	High    float64 `json:"high"`
-	Low     float64 `json:"low"`
-	Close   float64 `json:"close"`
-	Volume  int64   `json:"volume"`
-	WAP     float64 `json:"wap,omitempty"`
-	Count   int     `json:"count,omitempty"`
+	Open  float64 `json:"o"`
+	Close float64 `json:"c"`
+	High  float64 `json:"h"`
+	Low   float64 `json:"l"`
+	Volume float64 `json:"v"`  // Volume factor: volume = actual / 100
+	Timestamp int64  `json:"t"`  // Epoch time in milliseconds
 }
 
 // HistoricalDataResponse is the API response for historical data.
+// See: https://www.interactivebrokers.com/campus/ibkr-api-page/cpapi-v1/#hist-md
 type HistoricalDataResponse struct {
-	Symbol        string    `json:"symbol"`
-	ConID         int       `json:"conId,omitempty"`
-	StartTime     time.Time `json:"startTime,omitempty"`
-	EndTime       time.Time `json:"endTime,omitempty"`
-	Status        string    `json:"status"`
-	Bars          []Bar     `json:"bars"`
-	Error         string    `json:"error,omitempty"`
-	LastDuration  string    `json:"lastDuration,omitempty"`
-	Completed     bool      `json:"completed"`
+	ServerID         string `json:"serverId"`
+	Symbol           string `json:"symbol"`
+	Text            string `json:"text"`
+	PriceFactor     int    `json:"priceFactor"`
+	StartTime       string `json:"startTime"`
+	TimePeriod      string `json:"timePeriod"`
+	BarLength       int    `json:"barLength"`
+	MDAvailability  string `json:"mdAvailability"`
+	MktDataDelay    int    `json:"mktDataDelay"`
+	OutsideRTH      bool   `json:"outsideRth"`
+	VolumeFactor    int    `json:"volumeFactor"`
+	PriceDisplayRule int    `json:"priceDisplayRule"`
+	PriceDisplayValue string `json:"priceDisplayValue"`
+	NegativeCapable bool   `json:"negativeCapable"`
+	MessageVersion  int    `json:"messageVersion"`
+	Data            []Bar `json:"data"`
+	Points          int   `json:"points"`
+	TravelTime      int   `json:"travelTime"`
+	Error           string `json:"error,omitempty"`
 }
 
 // ServerVersion represents the gateway server version info.

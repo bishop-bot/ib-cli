@@ -12,26 +12,42 @@ func TestHistoricalDataParams_Defaults(t *testing.T) {
 	if params.Symbol != "" {
 		t.Errorf("Symbol = %v, want empty", params.Symbol)
 	}
-	if params.BarType != "" {
-		t.Errorf("BarType = %v, want empty", params.BarType)
+	if params.Period != "" {
+		t.Errorf("Period = %v, want empty", params.Period)
+	}
+	if params.Bar != "" {
+		t.Errorf("Bar = %v, want empty", params.Bar)
 	}
 }
 
 func TestBar_JSONSerialization(t *testing.T) {
+	// IB API uses: o=open, c=close, h=high, l=low, v=volume, t=timestamp
 	bar := Bar{
-		Time:   "2024-01-15T09:30:00-05:00",
-		Open:   150.25,
-		High:   151.00,
-		Low:    149.50,
-		Close:  150.75,
-		Volume: 1000000,
-		WAP:    150.50,
-		Count:  5000,
+		Open:      150.25,
+		High:      151.00,
+		Low:       149.50,
+		Close:     150.75,
+		Volume:    1000000,
+		Timestamp: 1705330200000, // 2024-01-15T09:30:00Z
 	}
 
+	// Test round-trip serialization
 	data, err := json.Marshal(bar)
 	if err != nil {
 		t.Fatalf("json.Marshal() error = %v", err)
+	}
+
+	// Verify JSON field names
+	var raw map[string]interface{}
+	if err := json.Unmarshal(data, &raw); err != nil {
+		t.Fatalf("json.Unmarshal() to raw error = %v", err)
+	}
+
+	// Check JSON keys are short names (o, c, h, l, v, t)
+	for _, key := range []string{"o", "c", "h", "l", "v", "t"} {
+		if _, ok := raw[key]; !ok {
+			t.Errorf("missing JSON key %s", key)
+		}
 	}
 
 	var decoded Bar
@@ -39,27 +55,29 @@ func TestBar_JSONSerialization(t *testing.T) {
 		t.Fatalf("json.Unmarshal() error = %v", err)
 	}
 
-	if decoded.Time != bar.Time {
-		t.Errorf("Time = %v, want %v", decoded.Time, bar.Time)
-	}
 	if decoded.Open != bar.Open {
 		t.Errorf("Open = %v, want %v", decoded.Open, bar.Open)
 	}
 	if decoded.Volume != bar.Volume {
 		t.Errorf("Volume = %v, want %v", decoded.Volume, bar.Volume)
 	}
+	if decoded.Timestamp != bar.Timestamp {
+		t.Errorf("Timestamp = %v, want %v", decoded.Timestamp, bar.Timestamp)
+	}
 }
 
 func TestHistoricalDataResponse_JSONSerialization(t *testing.T) {
+	// IB API response format
 	resp := HistoricalDataResponse{
-		Symbol:   "AAPL",
-		ConID:    123456,
-		Status:   "ok",
-		Bars: []Bar{
-			{Time: "2024-01-15T09:30:00", Open: 150.0, High: 151.0, Low: 149.0, Close: 150.5, Volume: 1000},
-			{Time: "2024-01-15T09:31:00", Open: 150.5, High: 151.5, Low: 150.0, Close: 151.0, Volume: 1200},
+		ServerID:   "20477",
+		Symbol:     "AAPL",
+		Text:       "APPLE INC",
+		TimePeriod: "1d",
+		Data: []Bar{
+			{Open: 150.0, High: 151.0, Low: 149.0, Close: 150.5, Volume: 1000, Timestamp: 1705330200000},
+			{Open: 150.5, High: 151.5, Low: 150.0, Close: 151.0, Volume: 1200, Timestamp: 1705333800000},
 		},
-		Completed: true,
+		Points: 2,
 	}
 
 	data, err := json.Marshal(resp)
@@ -75,11 +93,11 @@ func TestHistoricalDataResponse_JSONSerialization(t *testing.T) {
 	if decoded.Symbol != resp.Symbol {
 		t.Errorf("Symbol = %v, want %v", decoded.Symbol, resp.Symbol)
 	}
-	if len(decoded.Bars) != 2 {
-		t.Errorf("len(Bars) = %v, want 2", len(decoded.Bars))
+	if len(decoded.Data) != 2 {
+		t.Errorf("len(Data) = %v, want 2", len(decoded.Data))
 	}
-	if decoded.Completed != true {
-		t.Errorf("Completed = %v, want true", decoded.Completed)
+	if decoded.ServerID != resp.ServerID {
+		t.Errorf("ServerID = %v, want %v", decoded.ServerID, resp.ServerID)
 	}
 }
 

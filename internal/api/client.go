@@ -8,6 +8,7 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+	"strconv"
 	"strings"
 	"time"
 
@@ -150,56 +151,38 @@ func (c *Client) Logout(ctx context.Context) error {
 }
 
 // MarketHistory retrieves historical market data.
+// Endpoint: /iserver/marketdata/history
+// Required params: conid, exchange, period, bar
+// Optional: startTime, endTime, outsideRth, source
 func (c *Client) MarketHistory(ctx context.Context, params *models.HistoricalDataParams) (*models.HistoricalDataResponse, error) {
 	query := url.Values{}
 
-	if params.Symbol != "" {
-		query.Set("symbol", params.Symbol)
-	}
+	// Required parameters
 	if params.ConID != "" {
 		query.Set("conid", params.ConID)
 	}
 	if params.Exchange != "" {
 		query.Set("exchange", params.Exchange)
 	}
-	if params.SecType != "" {
-		query.Set("type", params.SecType)
+	if params.Period != "" {
+		query.Set("period", params.Period)
 	}
-	if params.ExchangeRoute != "" {
-		query.Set("exchange-route", params.ExchangeRoute)
+	if params.Bar != "" {
+		query.Set("bar", params.Bar)
 	}
+
+	// Optional parameters
 	if params.StartTime != "" {
-		query.Set("start", params.StartTime)
+		query.Set("startTime", params.StartTime)
 	}
 	if params.EndTime != "" {
-		query.Set("end", params.EndTime)
-	}
-	if params.BarSize != "" {
-		query.Set("bar", params.BarSize)
-	}
-	if params.BarUnit != "" {
-		query.Set("period", params.BarUnit)
-	}
-	if params.BarType != "" {
-		query.Set("barType", params.BarType)
-	}
-	if params.Duration != "" {
-		query.Set("duration", params.Duration)
+		query.Set("endTime", params.EndTime)
 	}
 	if params.OutsideRTH {
-		query.Set("outsideRTH", "true")
+		query.Set("outsideRth", "true")
 	}
-	if params.FormatDate != 0 {
-		query.Set("formatDate", fmt.Sprintf("%d", params.FormatDate))
-	}
-	if params.UseRTH {
-		query.Set("useRTH", "true")
-	}
-	if params.Limit > 0 {
-		query.Set("limit", fmt.Sprintf("%d", params.Limit))
-	}
-	if params.OverrideSpacing {
-		query.Set("overrideSpacing", "true")
+	if params.Source != "" {
+		query.Set("source", params.Source)
 	}
 
 	path := "/v1/api/iserver/marketdata/history?" + query.Encode()
@@ -221,14 +204,7 @@ func (c *Client) MarketHistory(ctx context.Context, params *models.HistoricalDat
 
 	var result models.HistoricalDataResponse
 	if err := json.Unmarshal(body, &result); err != nil {
-		// Try parsing as error object
-		var errResp map[string]interface{}
-		if json.Unmarshal(body, &errResp) == nil {
-			if errMsg, ok := errResp["error"].(string); ok {
-				return nil, fmt.Errorf("API error: %s", errMsg)
-			}
-		}
-		return nil, fmt.Errorf("decoding response: %w", err)
+		return nil, fmt.Errorf("decoding response: %w\nBody: %s", err, string(body))
 	}
 
 	return &result, nil
@@ -259,6 +235,66 @@ func (c *Client) ContractInfo(ctx context.Context, symbol, exchange, secType str
 		return nil, fmt.Errorf("no contract found for symbol: %s", symbol)
 	}
 	return &result[0], nil
+}
+
+// SearchContracts searches for contracts using secdef/search endpoint.
+// This is the preferred endpoint for looking up contracts.
+func (c *Client) SearchContracts(ctx context.Context, symbol, secType string) ([]models.ContractInfo, error) {
+	path := "/v1/api/iserver/secdef/search?symbol=" + url.QueryEscape(symbol)
+	if secType != "" {
+		path += "&secType=" + url.QueryEscape(secType)
+	}
+
+	resp, err := c.get(ctx, path)
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return nil, fmt.Errorf("reading response: %w", err)
+	}
+
+	if resp.StatusCode != http.StatusOK {
+		return nil, fmt.Errorf("API error (HTTP %d): %s", resp.StatusCode, string(body))
+	}
+
+	// The secdef/search endpoint returns an array of contract objects
+	var result []map[string]interface{}
+	if err := json.Unmarshal(body, &result); err != nil {
+		return nil, fmt.Errorf("decoding response: %w", err)
+	}
+
+	var contracts []models.ContractInfo
+	for _, item := range result {
+		// conid can be string or number depending on the response format
+		var conid int
+		switch v := item["conid"].(type) {
+		case float64:
+			conid = int(v)
+		case string:
+			if parsed, err := strconv.Atoi(v); err == nil {
+				conid = parsed
+			}
+		}
+		if conid > 0 {
+			contracts = append(contracts, models.ContractInfo{
+				ConID:   conid,
+				Symbol:  getString(item, "symbol"),
+				SecType: getString(item, "description"),
+			})
+		}
+	}
+
+	return contracts, nil
+}
+
+func getString(m map[string]interface{}, key string) string {
+	if v, ok := m[key].(string); ok {
+		return v
+	}
+	return ""
 }
 
 // ServiceStatus checks if specific services are available.

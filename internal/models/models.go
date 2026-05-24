@@ -141,6 +141,74 @@ type WatchlistsResponse struct {
 	Watchlists []Watchlist `json:"watchlists"`
 }
 
+// SecDefSearchParams holds parameters for security definition search.
+// See: https://www.interactivebrokers.com/campus/ibkr-api-page/cpapi-v1/#trsrv-conid-contract
+type SecDefSearchParams struct {
+	ConID   string `json:"-"` // Contract ID to search
+	Symbol  string `json:"-"`
+	SecType string `json:"-"`
+	Exchange string `json:"-"`
+}
+
+// SecDefInfo represents security definition info from secdef endpoint.
+type SecDefInfo struct {
+	ConID       int    `json:"conid"`
+	Symbol      string `json:"symbol"`
+	SecType     string `json:"secType"`
+	Currency    string `json:"currency"`
+	Description string `json:"description"`
+	Exchange    string `json:"exchange"`
+	Category    string `json:"category,omitempty"`
+}
+
+// AllConidsParams holds parameters for all-conids request.
+type AllConidsParams struct {
+	Exchange string `json:"-"`
+	SecType   string `json:"-"`
+}
+
+// ConidInfo represents contract info from /iserver/contract/{conid}/info endpoint.
+type ConidInfo struct {
+	ConID          int    `json:"conid"`
+	Symbol         string `json:"symbol"`
+	SecType        string `json:"secType"`
+	Currency       string `json:"currency"`
+	Description    string `json:"description"`
+	Exchange       string `json:"exchange"`
+	PrimaryExchange string `json:"primaryExchange,omitempty"`
+	ContractType   string `json:"contractType,omitempty"`
+	Category       string `json:"category,omitempty"`
+	SubCategory    string `json:"subCategory,omitempty"`
+	TickSize       float64 `json:"tickSize,omitempty"`
+	MinSize        float64 `json:"minSize,omitempty"`
+	MaxSize        float64 `json:"maxSize,omitempty"`
+	SizeIncrement  float64 `json:"sizeIncrement,omitempty"`
+	MarketDataAvailable bool `json:"marketDataAvailable,omitempty"`
+}
+
+// TradingScheduleParams holds parameters for trading schedule requests.
+type TradingScheduleParams struct {
+	Symbol   string `json:"-"`
+	Exchange string `json:"-"`
+	SecType  string `json:"-"`
+	Expiry   string `json:"-"`
+}
+
+// TradingScheduleDay represents a single day's trading schedule.
+type TradingScheduleDay struct {
+	Date      string `json:"date"`
+	Open      string `json:"open"`
+	Close     string `json:"close"`
+	IsHoliday bool   `json:"isHoliday,omitempty"`
+	IsEarlyClose bool `json:"isEarlyClose,omitempty"`
+}
+
+// TradingSchedule represents trading schedule response.
+type TradingSchedule struct {
+	Exchange string `json:"exchange"`
+	Days     []TradingScheduleDay `json:"days"`
+}
+
 // SavedSession holds encrypted session data for persistence.
 type SavedSession struct {
 	SessionID   string    `json:"sessionId"`

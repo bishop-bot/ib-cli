@@ -9,6 +9,7 @@ A production-grade CLI for Interactive Broker's Client Portal Web API.
 - **Session Persistence** - Save/restore sessions with master password encryption
 - **Watchlists** - List and retrieve user watchlists
 - **Contract Lookup** - Find security contract details by symbol
+- **Contract API** - Search by conid, all conids by exchange, contract info, trading schedules
 - **Server Info** - Check gateway version and service status
 
 ## Prerequisites
@@ -147,11 +148,31 @@ Gateway server commands.
 ```
 
 ### `contract`
-Contract lookup via secdef search.
+Contract and security information lookup commands.
 
 ```bash
+# Look up contract by symbol
 ./ib-cli contract lookup AAPL
 ./ib-cli contract lookup ES --exchange SMART
+
+# Search security definition by contract ID (GET /trsrv/secdef)
+./ib-cli contract secdef 265598
+./ib-cli contract secdef --symbol AAPL --type STOCK
+
+# Get all contract IDs by exchange (GET /trsrv/all-conids)
+./ib-cli contract all-conids --exchange NASDAQ
+./ib-cli contract all-conids --exchange SMART --type STOCK
+
+# Get detailed contract information by conid (GET /iserver/contract/{conid}/info)
+./ib-cli contract info 265598
+./ib-cli contract info 265598 --exchange NASDAQ
+
+# Get trading schedule by symbol (GET /trsrv/secdef/schedule)
+./ib-cli contract schedule ES --exchange SMART --type FUT
+./ib-cli contract schedule AAPL
+
+# Get trading schedule for exchange (GET /contract/trading-schedule)
+./ib-cli contract trading-schedule --exchange NASDAQ
 ```
 
 ## Bar Sizes

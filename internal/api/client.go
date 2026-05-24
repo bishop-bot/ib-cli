@@ -363,10 +363,11 @@ func (c *Client) WatchlistByID(ctx context.Context, id string) (*models.Watchlis
 }
 
 // SecDefSearch searches for security definitions by contract ID.
-// Endpoint: GET /trsrv/secdef
+// Endpoint: GET /trsrv/secdef?conids={conid}
+// Response is wrapped in {"secdef": [...]} structure.
 // See: https://www.interactivebrokers.com/campus/ibkr-api-page/cpapi-v1/#trsrv-conid-contract
 func (c *Client) SecDefSearch(ctx context.Context, conid string) ([]models.SecDefInfo, error) {
-	path := "/v1/api/trsrv/secdef?conid=" + url.QueryEscape(conid)
+	path := "/v1/api/trsrv/secdef?conids=" + url.QueryEscape(conid)
 	resp, err := c.get(ctx, path)
 	if err != nil {
 		return nil, err
@@ -382,11 +383,15 @@ func (c *Client) SecDefSearch(ctx context.Context, conid string) ([]models.SecDe
 		return nil, fmt.Errorf("API error (HTTP %d): %s", resp.StatusCode, string(body))
 	}
 
-	var result []models.SecDefInfo
-	if err := json.Unmarshal(body, &result); err != nil {
+	// Response is wrapped in {"secdef": [...]}
+	var wrapped struct {
+		SecDef []models.SecDefInfo `json:"secdef"`
+	}
+	if err := json.Unmarshal(body, &wrapped); err != nil {
 		return nil, fmt.Errorf("decoding response: %w", err)
 	}
-	return result, nil
+
+	return wrapped.SecDef, nil
 }
 
 // AllConidsByExchange returns all contract IDs for a given exchange.

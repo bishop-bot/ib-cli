@@ -152,13 +152,23 @@ type SecDefSearchParams struct {
 
 // SecDefInfo represents security definition info from secdef endpoint.
 type SecDefInfo struct {
-	ConID       int    `json:"conid"`
-	Symbol      string `json:"symbol"`
-	SecType     string `json:"secType"`
-	Currency    string `json:"currency"`
-	Description string `json:"description"`
-	Exchange    string `json:"exchange"`
-	Category    string `json:"category,omitempty"`
+	ConID           int     `json:"conid"`
+	Symbol          string  `json:"symbol"`
+	SecType         string  `json:"secType"`
+	Currency        string  `json:"currency"`
+	Description     string  `json:"description"`
+	Exchange        string  `json:"exchange"`
+	ListingExchange string  `json:"listingExchange,omitempty"`
+	CountryCode     string  `json:"countryCode,omitempty"`
+	Name            string  `json:"name,omitempty"`
+	AssetClass      string  `json:"assetClass,omitempty"`
+	Group           string  `json:"group,omitempty"`
+	Sector          string  `json:"sector,omitempty"`
+	SectorGroup     string  `json:"sectorGroup,omitempty"`
+	Type            string  `json:"type,omitempty"`
+	HasOptions      bool    `json:"hasOptions,omitempty"`
+	FullName        string  `json:"fullName,omitempty"`
+	Ticker          string  `json:"ticker,omitempty"`
 }
 
 // AllConidsParams holds parameters for all-conids request.

@@ -362,6 +362,156 @@ func (c *Client) WatchlistByID(ctx context.Context, id string) (*models.Watchlis
 	return &result, nil
 }
 
+// SecDefSearch searches for security definitions by contract ID.
+// Endpoint: GET /trsrv/secdef
+// See: https://www.interactivebrokers.com/campus/ibkr-api-page/cpapi-v1/#trsrv-conid-contract
+func (c *Client) SecDefSearch(ctx context.Context, conid string) ([]models.SecDefInfo, error) {
+	path := "/v1/api/trsrv/secdef?conid=" + url.QueryEscape(conid)
+	resp, err := c.get(ctx, path)
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return nil, fmt.Errorf("reading response: %w", err)
+	}
+
+	if resp.StatusCode != http.StatusOK {
+		return nil, fmt.Errorf("API error (HTTP %d): %s", resp.StatusCode, string(body))
+	}
+
+	var result []models.SecDefInfo
+	if err := json.Unmarshal(body, &result); err != nil {
+		return nil, fmt.Errorf("decoding response: %w", err)
+	}
+	return result, nil
+}
+
+// AllConidsByExchange returns all contract IDs for a given exchange.
+// Endpoint: GET /trsrv/all-conids
+// See: https://www.interactivebrokers.com/campus/ibkr-api-page/cpapi-v1/#trsrv-conid-contract
+func (c *Client) AllConidsByExchange(ctx context.Context, exchange, secType string) ([]int, error) {
+	path := "/v1/api/trsrv/all-conids?exchange=" + url.QueryEscape(exchange)
+	if secType != "" {
+		path += "&secType=" + url.QueryEscape(secType)
+	}
+
+	resp, err := c.get(ctx, path)
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return nil, fmt.Errorf("reading response: %w", err)
+	}
+
+	if resp.StatusCode != http.StatusOK {
+		return nil, fmt.Errorf("API error (HTTP %d): %s", resp.StatusCode, string(body))
+	}
+
+	// Response is an array of integers
+	var result []int
+	if err := json.Unmarshal(body, &result); err != nil {
+		return nil, fmt.Errorf("decoding response: %w", err)
+	}
+	return result, nil
+}
+
+// ContractInfoByConid returns detailed contract information by contract ID.
+// Endpoint: GET /iserver/contract/{conid}/info
+// See: https://www.interactivebrokers.com/campus/ibkr-api-page/cpapi-v1/#trsrv-conid-contract
+func (c *Client) ContractInfoByConid(ctx context.Context, conid string) (*models.ConidInfo, error) {
+	path := "/v1/api/iserver/contract/" + url.PathEscape(conid) + "/info"
+	resp, err := c.get(ctx, path)
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return nil, fmt.Errorf("reading response: %w", err)
+	}
+
+	if resp.StatusCode != http.StatusOK {
+		return nil, fmt.Errorf("API error (HTTP %d): %s", resp.StatusCode, string(body))
+	}
+
+	var result models.ConidInfo
+	if err := json.Unmarshal(body, &result); err != nil {
+		return nil, fmt.Errorf("decoding response: %w", err)
+	}
+	return &result, nil
+}
+
+// TradingScheduleBySymbol returns trading schedule for a symbol.
+// Endpoint: GET /trsrv/secdef/schedule
+// See: https://www.interactivebrokers.com/campus/ibkr-api-page/cpapi-v1/#trsrv-conid-contract
+func (c *Client) TradingScheduleBySymbol(ctx context.Context, symbol, exchange, secType, expiry string) ([]models.TradingSchedule, error) {
+	path := "/v1/api/trsrv/secdef/schedule?symbol=" + url.QueryEscape(symbol)
+	if exchange != "" {
+		path += "&exchange=" + url.QueryEscape(exchange)
+	}
+	if secType != "" {
+		path += "&secType=" + url.QueryEscape(secType)
+	}
+	if expiry != "" {
+		path += "&expiry=" + url.QueryEscape(expiry)
+	}
+
+	resp, err := c.get(ctx, path)
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return nil, fmt.Errorf("reading response: %w", err)
+	}
+
+	if resp.StatusCode != http.StatusOK {
+		return nil, fmt.Errorf("API error (HTTP %d): %s", resp.StatusCode, string(body))
+	}
+
+	var result []models.TradingSchedule
+	if err := json.Unmarshal(body, &result); err != nil {
+		return nil, fmt.Errorf("decoding response: %w", err)
+	}
+	return result, nil
+}
+
+// TradingSchedule returns trading schedule using the contract endpoint.
+// Endpoint: GET /contract/trading-schedule
+// See: https://www.interactivebrokers.com/campus/ibkr-api-page/cpapi-v1/#trsrv-conid-contract
+func (c *Client) TradingSchedule(ctx context.Context, exchange string) ([]models.TradingSchedule, error) {
+	path := "/v1/api/contract/trading-schedule?exchange=" + url.QueryEscape(exchange)
+	resp, err := c.get(ctx, path)
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return nil, fmt.Errorf("reading response: %w", err)
+	}
+
+	if resp.StatusCode != http.StatusOK {
+		return nil, fmt.Errorf("API error (HTTP %d): %s", resp.StatusCode, string(body))
+	}
+
+	var result []models.TradingSchedule
+	if err := json.Unmarshal(body, &result); err != nil {
+		return nil, fmt.Errorf("decoding response: %w", err)
+	}
+	return result, nil
+}
+
 // get performs a GET request with optional session handling.
 func (c *Client) get(ctx context.Context, path string) (*http.Response, error) {
 	return c.doRequest(ctx, "GET", path, nil)

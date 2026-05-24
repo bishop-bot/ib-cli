@@ -213,14 +213,14 @@ func (c *Client) MarketHistory(ctx context.Context, params *models.HistoricalDat
 	return &result, nil
 }
 
-// ContractInfo looks up contract details by symbol.
+// ContractInfo looks up contract details by symbol using /iserver/secdef/search endpoint.
 func (c *Client) ContractInfo(ctx context.Context, symbol, exchange, secType string) (*models.ContractInfo, error) {
-	path := "/v1/api/iserver/contract/" + url.PathEscape(symbol)
+	path := "/v1/api/iserver/secdef/search?symbol=" + url.QueryEscape(symbol)
+	if secType != "" {
+		path += "&secType=" + url.QueryEscape(secType)
+	}
 	if exchange != "" {
-		path += "?exchange=" + url.QueryEscape(exchange)
-		if secType != "" {
-			path += "&secType=" + url.QueryEscape(secType)
-		}
+		path += "&exchange=" + url.QueryEscape(exchange)
 	}
 
 	resp, err := c.get(ctx, path)
@@ -229,15 +229,55 @@ func (c *Client) ContractInfo(ctx context.Context, symbol, exchange, secType str
 	}
 	defer resp.Body.Close()
 
-	var result []models.ContractInfo
-	if err := json.NewDecoder(resp.Body).Decode(&result); err != nil {
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return nil, fmt.Errorf("reading response: %w", err)
+	}
+
+	if resp.StatusCode != http.StatusOK {
+		return nil, fmt.Errorf("API error (HTTP %d): %s", resp.StatusCode, string(body))
+	}
+
+	// Parse secdef/search response
+	var secdefResults []map[string]interface{}
+	if err := json.Unmarshal(body, &secdefResults); err != nil {
 		return nil, fmt.Errorf("decoding response: %w", err)
 	}
 
-	if len(result) == 0 {
+	if len(secdefResults) == 0 {
 		return nil, fmt.Errorf("no contract found for symbol: %s", symbol)
 	}
-	return &result[0], nil
+
+	// Use first result - convert conid to int
+	item := secdefResults[0]
+	var conid int
+	if cid, ok := item["conid"].(string); ok {
+		if parsed, err := strconv.Atoi(cid); err == nil {
+			conid = parsed
+		}
+	} else if cid, ok := item["conid"].(float64); ok {
+		conid = int(cid)
+	}
+
+	return &models.ContractInfo{
+		ConID:       conid,
+		Symbol:      getString(item, "symbol"),
+		SecType:     getSecType(item),
+		Currency:    "", // Not in secdef/search response
+		Description: getString(item, "companyName"),
+		Exchange:    getString(item, "description"), // description contains exchange
+	}, nil
+}
+
+func getSecType(item map[string]interface{}) string {
+	if sections, ok := item["sections"].([]interface{}); ok && len(sections) > 0 {
+		if first, ok := sections[0].(map[string]interface{}); ok {
+			if secType, ok := first["secType"].(string); ok {
+				return secType
+			}
+		}
+	}
+	return ""
 }
 
 // SearchContracts searches for contracts using secdef/search endpoint.

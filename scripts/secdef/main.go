@@ -12,6 +12,7 @@ import (
 	"os"
 	"path/filepath"
 	"sync"
+	"sync/atomic"
 	"time"
 
 	"github.com/bishop-bot/ib-cli/internal/config"
@@ -56,7 +57,7 @@ var CSVColumns = []string{
 	"fullName",
 }
 
-type fetchConfig struct {
+type secdefConfig struct {
 	exchange   string
 	conidDir   string
 	outputDir  string
@@ -185,7 +186,7 @@ type Result struct {
 	Error           string
 }
 
-func parseFlags() fetchConfig {
+func parseFlags() secdefConfig {
 	exchange := flag.String("exchange", "", "Exchange name (e.g., ARCA, NYSE, NASDAQ)")
 	conidDir := flag.String("conid-dir", "assets/conid", "Directory containing conid JSON files")
 	outputDir := flag.String("output-dir", ".", "Output directory for CSV")
@@ -204,7 +205,7 @@ func parseFlags() fetchConfig {
 		os.Exit(1)
 	}
 
-	return fetchConfig{
+	return secdefConfig{
 		exchange:   *exchange,
 		conidDir:   *conidDir,
 		outputDir:  *outputDir,
@@ -290,32 +291,39 @@ func min(a, b int) int {
 func processConids(client *http.Client, baseURL string, conids []ConidRecord, workers int, delay time.Duration, errorWriter *os.File, verbose bool) []Result {
 	results := make([]Result, len(conids))
 	var wg sync.WaitGroup
-	var panicErr error
+
+	// Progress tracking
+	var completed int64
+	total := len(conids)
+
+	// Start progress reporter
+	done := make(chan struct{})
+	go func() {
+		ticker := time.NewTicker(5 * time.Second)
+		defer ticker.Stop()
+		for {
+			select {
+			case <-ticker.C:
+				c := atomic.LoadInt64(&completed)
+				fmt.Printf("  Progress: %d/%d (%.1f%%)\n", c, total, float64(c)/float64(total)*100)
+			case <-done:
+				return
+			}
+		}
+	}()
 
 	semaphore := make(chan struct{}, workers)
 
 	for i, c := range conids {
 		wg.Add(1)
 		go func(index int, conid int, ticker string) {
-			defer func() {
-				if r := recover(); r != nil {
-					errMsg := fmt.Sprintf("PANIC: conid=%d, ticker=%s, panic=%v", conid, ticker, r)
-					fmt.Fprintln(errorWriter, errMsg)
-					if panicErr == nil {
-						panicErr = fmt.Errorf("%v", r)
-					}
-					results[index] = Result{
-						ConID:  conid,
-						Ticker: ticker,
-						Error:  fmt.Sprintf("panic: %v", r),
-					}
-				}
-				wg.Done()
-				<-semaphore
-			}()
+			defer wg.Done()
+			defer func() { <-semaphore }()
+			defer atomic.AddInt64(&completed, 1)
 
 			semaphore <- struct{}{}
 
+			// Small delay before processing
 			time.Sleep(delay)
 
 			item, url, err := fetchSecDef(client, baseURL, conid, verbose)
@@ -349,10 +357,7 @@ func processConids(client *http.Client, baseURL string, conids []ConidRecord, wo
 	}
 
 	wg.Wait()
-
-	if panicErr != nil {
-		fmt.Fprintf(os.Stderr, "\nFATAL: Panic occurred during processing: %v\n", panicErr)
-	}
+	close(done)
 
 	return results
 }

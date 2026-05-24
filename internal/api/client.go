@@ -238,10 +238,23 @@ func (c *Client) ContractInfo(ctx context.Context, symbol, exchange, secType str
 		return nil, fmt.Errorf("API error (HTTP %d): %s", resp.StatusCode, string(body))
 	}
 
-	// Parse secdef/search response
-	var secdefResults []map[string]interface{}
-	if err := json.Unmarshal(body, &secdefResults); err != nil {
+	// First unmarshal to interface to check if it's an error or array
+	var rawResult interface{}
+	if err := json.Unmarshal(body, &rawResult); err != nil {
 		return nil, fmt.Errorf("decoding response: %w", err)
+	}
+
+	// Check for error response ({"error": "..."})
+	if errorResp, ok := rawResult.(map[string]interface{}); ok {
+		if errMsg, ok := errorResp["error"].(string); ok {
+			return nil, fmt.Errorf("API error: %s", errMsg)
+		}
+	}
+
+	// Expect array of contract objects
+	secdefResults, ok := rawResult.([]interface{})
+	if !ok {
+		return nil, fmt.Errorf("unexpected response format")
 	}
 
 	if len(secdefResults) == 0 {
@@ -249,23 +262,27 @@ func (c *Client) ContractInfo(ctx context.Context, symbol, exchange, secType str
 	}
 
 	// Use first result - convert conid to int
-	item := secdefResults[0]
+	firstItem, ok := secdefResults[0].(map[string]interface{})
+	if !ok {
+		return nil, fmt.Errorf("invalid contract data")
+	}
+
 	var conid int
-	if cid, ok := item["conid"].(string); ok {
+	if cid, ok := firstItem["conid"].(string); ok {
 		if parsed, err := strconv.Atoi(cid); err == nil {
 			conid = parsed
 		}
-	} else if cid, ok := item["conid"].(float64); ok {
+	} else if cid, ok := firstItem["conid"].(float64); ok {
 		conid = int(cid)
 	}
 
 	return &models.ContractInfo{
 		ConID:       conid,
-		Symbol:      getString(item, "symbol"),
-		SecType:     getSecType(item),
+		Symbol:      getString(firstItem, "symbol"),
+		SecType:     getSecType(firstItem),
 		Currency:    "", // Not in secdef/search response
-		Description: getString(item, "companyName"),
-		Exchange:    getString(item, "description"), // description contains exchange
+		Description: getString(firstItem, "companyName"),
+		Exchange:    getString(firstItem, "description"), // description contains exchange
 	}, nil
 }
 
@@ -303,17 +320,39 @@ func (c *Client) SearchContracts(ctx context.Context, symbol, secType string) ([
 		return nil, fmt.Errorf("API error (HTTP %d): %s", resp.StatusCode, string(body))
 	}
 
-	// The secdef/search endpoint returns an array of contract objects
-	var result []map[string]interface{}
-	if err := json.Unmarshal(body, &result); err != nil {
+	// First unmarshal to interface to check if it's an error or array
+	var rawResult interface{}
+	if err := json.Unmarshal(body, &rawResult); err != nil {
 		return nil, fmt.Errorf("decoding response: %w", err)
+	}
+
+	// Check for error response ({"error": "..."})
+	if errorResp, ok := rawResult.(map[string]interface{}); ok {
+		if errMsg, ok := errorResp["error"].(string); ok {
+			return nil, fmt.Errorf("API error: %s", errMsg)
+		}
+	}
+
+	// Expect array of contract objects
+	result, ok := rawResult.([]interface{})
+	if !ok {
+		return nil, fmt.Errorf("unexpected response format")
+	}
+
+	if len(result) == 0 {
+		return nil, fmt.Errorf("no contracts found for symbol: %s", symbol)
 	}
 
 	var contracts []models.ContractInfo
 	for _, item := range result {
+		itemMap, ok := item.(map[string]interface{})
+		if !ok {
+			continue
+		}
+
 		// conid can be string or number depending on the response format
 		var conid int
-		switch v := item["conid"].(type) {
+		switch v := itemMap["conid"].(type) {
 		case float64:
 			conid = int(v)
 		case string:
@@ -324,8 +363,8 @@ func (c *Client) SearchContracts(ctx context.Context, symbol, secType string) ([
 		if conid > 0 {
 			contracts = append(contracts, models.ContractInfo{
 				ConID:   conid,
-				Symbol:  getString(item, "symbol"),
-				SecType: getString(item, "description"),
+				Symbol:  getString(itemMap, "symbol"),
+				SecType: getString(itemMap, "description"),
 			})
 		}
 	}

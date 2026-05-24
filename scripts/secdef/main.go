@@ -7,6 +7,7 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
+	"io"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -64,19 +65,42 @@ type fetchConfig struct {
 	delay      time.Duration
 	limit      int
 	configPath string
+	verbose    bool
 }
 
 func main() {
 	cfg := parseFlags()
 
+	// Setup logging
+	errorWriter := os.Stderr
+	if cfg.errorLog != "" {
+		file, err := os.Create(cfg.errorLog)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "Error creating error log file: %v\n", err)
+			os.Exit(1)
+		}
+		defer file.Close()
+		errorWriter = file
+		fmt.Fprintf(errorWriter, "Starting secdef fetch at %s\n", time.Now().Format(time.RFC3339))
+	}
+
 	// Load configuration
+	if cfg.verbose {
+		fmt.Printf("Loading config from: %s\n", cfg.configPath)
+	}
 	configLoader, err := config.Load(cfg.configPath)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error loading config: %v\n", err)
 		os.Exit(1)
 	}
+	if cfg.verbose {
+		fmt.Printf("Gateway URL: %s\n", configLoader.Gateway.BaseURL())
+	}
 
 	// Load conids from JSON file
+	if cfg.verbose {
+		fmt.Printf("Loading conids from: %s/%s.json\n", cfg.conidDir, cfg.exchange)
+	}
 	conids, err := loadConids(cfg.conidDir, cfg.exchange)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error loading conids: %v\n", err)
@@ -103,13 +127,16 @@ func main() {
 	// Process conids
 	fmt.Printf("Fetching security definitions (workers=%d, delay=%v)...\n", cfg.workers, cfg.delay)
 
-	results := processConids(client, baseURL, conids, cfg.workers, cfg.delay, os.Stderr)
+	results := processConids(client, baseURL, conids, cfg.workers, cfg.delay, errorWriter, cfg.verbose)
 
 	// Generate output filename with date
 	dateStr := time.Now().Format("20060102")
 	outputFile := filepath.Join(cfg.outputDir, fmt.Sprintf("%s_%s.csv", cfg.exchange, dateStr))
 
 	// Write CSV
+	if cfg.verbose {
+		fmt.Printf("Writing CSV to: %s\n", outputFile)
+	}
 	if err := writeCSV(outputFile, results); err != nil {
 		fmt.Fprintf(os.Stderr, "Error writing CSV: %v\n", err)
 		os.Exit(1)
@@ -127,6 +154,9 @@ func main() {
 	}
 	if errorCount > 0 {
 		fmt.Printf("Errors: %d\n", errorCount)
+		if cfg.errorLog != "" {
+			fmt.Printf("Errors logged to: %s\n", cfg.errorLog)
+		}
 	}
 }
 
@@ -164,6 +194,7 @@ func parseFlags() fetchConfig {
 	delay := flag.Duration("delay", 300*time.Millisecond, "Delay between requests")
 	limit := flag.Int("limit", 0, "Limit number of conids to process (0 = all)")
 	configPath := flag.String("config", "config.toml", "Path to config file")
+	verbose := flag.Bool("verbose", false, "Enable verbose output")
 
 	flag.Parse()
 
@@ -182,6 +213,7 @@ func parseFlags() fetchConfig {
 		delay:      *delay,
 		limit:      *limit,
 		configPath: *configPath,
+		verbose:    *verbose,
 	}
 }
 
@@ -200,63 +232,95 @@ func loadConids(dir, exchange string) ([]ConidRecord, error) {
 	return records, nil
 }
 
-func fetchSecDef(client *http.Client, baseURL string, conid int) (*SecDefItem, error) {
+func fetchSecDef(client *http.Client, baseURL string, conid int, verbose bool) (*SecDefItem, string, error) {
 	path := fmt.Sprintf("/v1/api/trsrv/secdef?conids=%d", conid)
 	url := baseURL + path
+
+	if verbose {
+		fmt.Printf("Fetching: %s\n", url)
+	}
 
 	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
 	defer cancel()
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
-		return nil, err
+		return nil, url, fmt.Errorf("creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json")
 
 	resp, err := client.Do(req)
 	if err != nil {
-		return nil, err
+		return nil, url, fmt.Errorf("request failed: %w", err)
 	}
 	defer resp.Body.Close()
 
+	// Read response body
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return nil, url, fmt.Errorf("reading response body: %w", err)
+	}
+
 	if resp.StatusCode != http.StatusOK {
-		return nil, fmt.Errorf("API error (HTTP %d)", resp.StatusCode)
+		return nil, url, fmt.Errorf("HTTP %d: %s", resp.StatusCode, string(body))
 	}
 
 	var result SecDefResponse
-	if err := json.NewDecoder(resp.Body).Decode(&result); err != nil {
-		return nil, err
+	if err := json.Unmarshal(body, &result); err != nil {
+		return nil, url, fmt.Errorf("JSON decode failed: %w (body: %s)", err, string(body)[:min(200, len(body))])
 	}
 
 	// Find the matching conid in the secdef array
 	for _, item := range result.SecDef {
 		if item.ConID == conid {
-			return &item, nil
+			return &item, url, nil
 		}
 	}
 
-	return nil, fmt.Errorf("conid %d not found in response", conid)
+	return nil, url, fmt.Errorf("conid %d not found in response (found %d items)", conid, len(result.SecDef))
 }
 
-func processConids(client *http.Client, baseURL string, conids []ConidRecord, workers int, delay time.Duration, errorWriter *os.File) []Result {
+func min(a, b int) int {
+	if a < b {
+		return a
+	}
+	return b
+}
+
+func processConids(client *http.Client, baseURL string, conids []ConidRecord, workers int, delay time.Duration, errorWriter *os.File, verbose bool) []Result {
 	results := make([]Result, len(conids))
 	var wg sync.WaitGroup
+	var panicErr error
 
 	semaphore := make(chan struct{}, workers)
 
 	for i, c := range conids {
 		wg.Add(1)
 		go func(index int, conid int, ticker string) {
-			defer wg.Done()
+			defer func() {
+				if r := recover(); r != nil {
+					errMsg := fmt.Sprintf("PANIC: conid=%d, ticker=%s, panic=%v", conid, ticker, r)
+					fmt.Fprintln(errorWriter, errMsg)
+					if panicErr == nil {
+						panicErr = fmt.Errorf("%v", r)
+					}
+					results[index] = Result{
+						ConID:  conid,
+						Ticker: ticker,
+						Error:  fmt.Sprintf("panic: %v", r),
+					}
+				}
+				wg.Done()
+				<-semaphore
+			}()
 
 			semaphore <- struct{}{}
-			defer func() { <-semaphore }()
 
 			time.Sleep(delay)
 
-			item, err := fetchSecDef(client, baseURL, conid)
+			item, url, err := fetchSecDef(client, baseURL, conid, verbose)
 			if err != nil {
-				errMsg := fmt.Sprintf("Failed: conid=%d, ticker=%s, error=%v", conid, ticker, err)
+				errMsg := fmt.Sprintf("Failed: conid=%d, ticker=%s, url=%s, error=%v", conid, ticker, url, err)
 				fmt.Fprintln(errorWriter, errMsg)
 				results[index] = Result{
 					ConID:  conid,
@@ -285,6 +349,11 @@ func processConids(client *http.Client, baseURL string, conids []ConidRecord, wo
 	}
 
 	wg.Wait()
+
+	if panicErr != nil {
+		fmt.Fprintf(os.Stderr, "\nFATAL: Panic occurred during processing: %v\n", panicErr)
+	}
+
 	return results
 }
 

@@ -21,7 +21,7 @@ var (
 		Short:         "Interactive Broker Client Portal Web API CLI",
 		Long:          `A production-grade CLI for interacting with Interactive Broker's\nClient Portal Web API. Supports historical market data, authentication,\nand various account operations.`,
 		SilenceUsage:  true,
-		SilenceErrors: true,
+		SilenceErrors: false,
 		Version:       fmt.Sprintf("%s (commit: %s)", Version, Commit),
 		PersistentPreRunE: func(cmd *cobra.Command, args []string) error {
 			return nil

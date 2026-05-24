@@ -6,8 +6,8 @@ bin/
 *.so
 *.dylib
 ib-cli
-ib-cli-* # if we release multiple binaries
-secdef  # utility script binary
+ib-cli-*
+secdef
 
 # Test binary, built with `go test -c`
 *.test

@@ -180,24 +180,24 @@ Contract and security information lookup commands.
 
 Standalone utility programs that consume the IB Gateway API.
 
-### `fetchsecdef`
+### `secdef`
 Batch fetch security definitions from conid JSON files and export to CSV.
 
 ```bash
 # Build
-go build -o fetchsecdef ./scripts/fetchsecdef
+go build -o secdef ./scripts/secdef
 
 # Fetch all conids for an exchange
-./fetchsecdef --exchange NYSE
+./secdef --exchange NYSE
 
 # Limit to first 100 conids
-./fetchsecdef --exchange ARCA --limit 100
+./secdef --exchange ARCA --limit 100
 
 # Custom output directory and workers
-./fetchsecdef --exchange NASDAQ --output-dir ./data --workers 5
+./secdef --exchange NASDAQ --output-dir ./data --workers 5
 
 # Log errors to file
-./fetchsecdef --exchange NYSE --error-log errors.csv
+./secdef --exchange NYSE --error-log errors.csv
 ```
 
 **Output:** `{exchange}_YYYYMMDD.csv` with columns:
@@ -258,7 +258,7 @@ ib-cli/
 │   ├── config/    # Configuration management
 │   └── models/    # Data models
 ├── scripts/       # Utility programs (consume IB API)
-│   └── fetchsecdef/ # Batch fetch security definitions to CSV
+│   └── secdef/ # Batch fetch security definitions to CSV
 └── main.go
 ```
 

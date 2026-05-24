@@ -41,6 +41,7 @@ type SecDefItem struct {
 // CSVColumns defines the fields to extract for CSV output.
 var CSVColumns = []string{
 	"conid",
+	"ticker",
 	"currency",
 	"listingExchange",
 	"countryCode",
@@ -306,6 +307,7 @@ func writeCSV(path string, results []Result) error {
 	for _, r := range results {
 		row := []string{
 			fmt.Sprintf("%d", r.ConID),
+			r.Ticker,
 			r.Currency,
 			r.ListingExchange,
 			r.CountryCode,

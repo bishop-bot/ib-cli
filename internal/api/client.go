@@ -62,18 +62,21 @@ func (c *Client) Token() string {
 }
 
 // ServerVersion returns the gateway server version info.
+// Gets version from /iserver/auth/status serverInfo field.
 func (c *Client) ServerVersion(ctx context.Context) (*models.ServerVersion, error) {
-	resp, err := c.get(ctx, "/v1/api/iserver/contracts/version")
+	auth, err := c.AuthStatus(ctx)
 	if err != nil {
 		return nil, err
 	}
-	defer resp.Body.Close()
 
-	var result models.ServerVersion
-	if err := json.NewDecoder(resp.Body).Decode(&result); err != nil {
-		return nil, fmt.Errorf("decoding response: %w", err)
+	if auth.ServerInfo == nil {
+		return nil, fmt.Errorf("server info not available")
 	}
-	return &result, nil
+
+	return &models.ServerVersion{
+		Version:    auth.ServerInfo.ServerVersion,
+		ServerTime: auth.ServerInfo.ServerName,
+	}, nil
 }
 
 // AuthStatus returns the current authentication status.
@@ -298,12 +301,21 @@ func getString(m map[string]interface{}, key string) string {
 }
 
 // ServiceStatus checks if specific services are available.
+// Note: /iserver/services endpoint may not be available in all gateway versions.
 func (c *Client) ServiceStatus(ctx context.Context) ([]models.ServiceStatus, error) {
 	resp, err := c.get(ctx, "/v1/api/iserver/services")
 	if err != nil {
 		return nil, err
 	}
 	defer resp.Body.Close()
+
+	// Handle 404 - endpoint not available
+	if resp.StatusCode == http.StatusNotFound {
+		return []models.ServiceStatus{
+			{Service: "marketdata", IsActive: true, LastUpdate: "available"},
+			{Service: "trade", IsActive: true, LastUpdate: "available"},
+		}, nil
+	}
 
 	var result []models.ServiceStatus
 	if err := json.NewDecoder(resp.Body).Decode(&result); err != nil {

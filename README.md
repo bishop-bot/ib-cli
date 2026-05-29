@@ -185,7 +185,7 @@ Batch fetch security definitions from conid JSON files and export to CSV.
 
 ```bash
 # Build
-go build -o secdef ./scripts/secdef
+go build -o secdef ./scripts/secdef.go
 
 # Fetch all conids for an exchange
 ./secdef --exchange NYSE
@@ -212,6 +212,26 @@ go build -o secdef ./scripts/secdef
 - `-w, --workers` Concurrent workers (default: 3)
 - `--delay` Delay between requests (default: 300ms)
 - `-c, --config` Config file path (default: config.toml)
+- `-v, --verbose` Enable verbose output
+
+### `secdef_instrument`
+Map CSV output to secdef instrument format for trading systems.
+
+```bash
+# Build
+go build -o secdef_instrument ./scripts/secdef_instrument.go
+
+# Map NYSE CSV to instrument format
+./secdef_instrument --exchange NYSE NYSE_20260524.csv
+
+# Output: NYSE_20260524_mapped.csv
+```
+
+**Flags:**
+- `-e, --exchange` Exchange value (required)
+
+**Output:** `{input}_mapped.csv` with columns:
+`id`, `symbol`, `name`, `publisher`, `instrument_class`, `currency`, `exchange`, `asset`, `security_type`, etc.
 
 ## Bar Sizes
 
@@ -258,7 +278,8 @@ ib-cli/
 │   ├── config/    # Configuration management
 │   └── models/    # Data models
 ├── scripts/       # Utility programs (consume IB API)
-│   └── secdef/ # Batch fetch security definitions to CSV
+│   ├── secdef.go     # Batch fetch security definitions to CSV
+│   └── secdef_instrument.go # CSV column mapping utility
 └── main.go
 ```
 

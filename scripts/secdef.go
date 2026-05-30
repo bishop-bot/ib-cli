@@ -12,10 +12,10 @@ import (
 	"os"
 	"path/filepath"
 	"sync"
-	"sync/atomic"
 	"time"
 
 	"github.com/bishop-bot/ib-cli/internal/config"
+	"github.com/schollz/progressbar/v3"
 )
 
 // SecDefResponse is the response structure from /trsrv/secdef endpoint.
@@ -292,34 +292,26 @@ func processConids(client *http.Client, baseURL string, conids []ConidRecord, wo
 	results := make([]Result, len(conids))
 	var wg sync.WaitGroup
 
-	// Progress tracking
-	var completed int64
 	total := len(conids)
 
-	// Start progress reporter
-	done := make(chan struct{})
-	go func() {
-		ticker := time.NewTicker(5 * time.Second)
-		defer ticker.Stop()
-		for {
-			select {
-			case <-ticker.C:
-				c := atomic.LoadInt64(&completed)
-				fmt.Printf("  Progress: %d/%d (%.1f%%)\n", c, total, float64(c)/float64(total)*100)
-			case <-done:
-				return
-			}
-		}
-	}()
+	// Create progress bar with ETA
+	bar := progressbar.NewOptions(total,
+		progressbar.OptionSetDescription(fmt.Sprintf("Fetching (%d workers)", workers)),
+		progressbar.OptionSetWriter(os.Stdout),
+		progressbar.OptionSetElapsedTime(true),
+		progressbar.OptionSetPredictTime(true),
+		progressbar.OptionShowCount(),
+		progressbar.OptionShowElapsedTimeOnFinish(),
+		progressbar.OptionClearOnFinish(),
+	)
 
 	semaphore := make(chan struct{}, workers)
 
 	for i, c := range conids {
 		wg.Add(1)
-		go func(index int, conid int, ticker string) {
+		go func(index int, conid int, ticker string, pb *progressbar.ProgressBar) {
 			defer wg.Done()
 			defer func() { <-semaphore }()
-			defer atomic.AddInt64(&completed, 1)
 
 			semaphore <- struct{}{}
 
@@ -335,6 +327,7 @@ func processConids(client *http.Client, baseURL string, conids []ConidRecord, wo
 					Ticker: ticker,
 					Error:  err.Error(),
 				}
+				pb.Add(1)
 				return
 			}
 
@@ -353,11 +346,12 @@ func processConids(client *http.Client, baseURL string, conids []ConidRecord, wo
 				HasOptions:      item.HasOptions,
 				FullName:        item.FullName,
 			}
-		}(i, c.ConID, c.Ticker)
+			pb.Add(1)
+		}(i, c.ConID, c.Ticker, bar)
 	}
 
 	wg.Wait()
-	close(done)
+	bar.Close()
 
 	return results
 }

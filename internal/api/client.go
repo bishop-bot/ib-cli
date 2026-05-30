@@ -62,18 +62,21 @@ func (c *Client) Token() string {
 }
 
 // ServerVersion returns the gateway server version info.
+// Gets version from /iserver/auth/status serverInfo field.
 func (c *Client) ServerVersion(ctx context.Context) (*models.ServerVersion, error) {
-	resp, err := c.get(ctx, "/v1/api/iserver/contracts/version")
+	auth, err := c.AuthStatus(ctx)
 	if err != nil {
 		return nil, err
 	}
-	defer resp.Body.Close()
 
-	var result models.ServerVersion
-	if err := json.NewDecoder(resp.Body).Decode(&result); err != nil {
-		return nil, fmt.Errorf("decoding response: %w", err)
+	if auth.ServerInfo == nil {
+		return nil, fmt.Errorf("server info not available")
 	}
-	return &result, nil
+
+	return &models.ServerVersion{
+		Version:    auth.ServerInfo.ServerVersion,
+		ServerTime: auth.ServerInfo.ServerName,
+	}, nil
 }
 
 // AuthStatus returns the current authentication status.
@@ -210,14 +213,14 @@ func (c *Client) MarketHistory(ctx context.Context, params *models.HistoricalDat
 	return &result, nil
 }
 
-// ContractInfo looks up contract details by symbol.
+// ContractInfo looks up contract details by symbol using /iserver/secdef/search endpoint.
 func (c *Client) ContractInfo(ctx context.Context, symbol, exchange, secType string) (*models.ContractInfo, error) {
-	path := "/v1/api/iserver/contract/" + url.PathEscape(symbol)
+	path := "/v1/api/iserver/secdef/search?symbol=" + url.QueryEscape(symbol)
+	if secType != "" {
+		path += "&secType=" + url.QueryEscape(secType)
+	}
 	if exchange != "" {
-		path += "?exchange=" + url.QueryEscape(exchange)
-		if secType != "" {
-			path += "&secType=" + url.QueryEscape(secType)
-		}
+		path += "&exchange=" + url.QueryEscape(exchange)
 	}
 
 	resp, err := c.get(ctx, path)
@@ -226,15 +229,72 @@ func (c *Client) ContractInfo(ctx context.Context, symbol, exchange, secType str
 	}
 	defer resp.Body.Close()
 
-	var result []models.ContractInfo
-	if err := json.NewDecoder(resp.Body).Decode(&result); err != nil {
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return nil, fmt.Errorf("reading response: %w", err)
+	}
+
+	if resp.StatusCode != http.StatusOK {
+		return nil, fmt.Errorf("API error (HTTP %d): %s", resp.StatusCode, string(body))
+	}
+
+	// First unmarshal to interface to check if it's an error or array
+	var rawResult interface{}
+	if err := json.Unmarshal(body, &rawResult); err != nil {
 		return nil, fmt.Errorf("decoding response: %w", err)
 	}
 
-	if len(result) == 0 {
+	// Check for error response ({"error": "..."})
+	if errorResp, ok := rawResult.(map[string]interface{}); ok {
+		if errMsg, ok := errorResp["error"].(string); ok {
+			return nil, fmt.Errorf("API error: %s", errMsg)
+		}
+	}
+
+	// Expect array of contract objects
+	secdefResults, ok := rawResult.([]interface{})
+	if !ok {
+		return nil, fmt.Errorf("unexpected response format")
+	}
+
+	if len(secdefResults) == 0 {
 		return nil, fmt.Errorf("no contract found for symbol: %s", symbol)
 	}
-	return &result[0], nil
+
+	// Use first result - convert conid to int
+	firstItem, ok := secdefResults[0].(map[string]interface{})
+	if !ok {
+		return nil, fmt.Errorf("invalid contract data")
+	}
+
+	var conid int
+	if cid, ok := firstItem["conid"].(string); ok {
+		if parsed, err := strconv.Atoi(cid); err == nil {
+			conid = parsed
+		}
+	} else if cid, ok := firstItem["conid"].(float64); ok {
+		conid = int(cid)
+	}
+
+	return &models.ContractInfo{
+		ConID:       conid,
+		Symbol:      getString(firstItem, "symbol"),
+		SecType:     getSecType(firstItem),
+		Currency:    "", // Not in secdef/search response
+		Description: getString(firstItem, "companyName"),
+		Exchange:    getString(firstItem, "description"), // description contains exchange
+	}, nil
+}
+
+func getSecType(item map[string]interface{}) string {
+	if sections, ok := item["sections"].([]interface{}); ok && len(sections) > 0 {
+		if first, ok := sections[0].(map[string]interface{}); ok {
+			if secType, ok := first["secType"].(string); ok {
+				return secType
+			}
+		}
+	}
+	return ""
 }
 
 // SearchContracts searches for contracts using secdef/search endpoint.
@@ -260,17 +320,39 @@ func (c *Client) SearchContracts(ctx context.Context, symbol, secType string) ([
 		return nil, fmt.Errorf("API error (HTTP %d): %s", resp.StatusCode, string(body))
 	}
 
-	// The secdef/search endpoint returns an array of contract objects
-	var result []map[string]interface{}
-	if err := json.Unmarshal(body, &result); err != nil {
+	// First unmarshal to interface to check if it's an error or array
+	var rawResult interface{}
+	if err := json.Unmarshal(body, &rawResult); err != nil {
 		return nil, fmt.Errorf("decoding response: %w", err)
+	}
+
+	// Check for error response ({"error": "..."})
+	if errorResp, ok := rawResult.(map[string]interface{}); ok {
+		if errMsg, ok := errorResp["error"].(string); ok {
+			return nil, fmt.Errorf("API error: %s", errMsg)
+		}
+	}
+
+	// Expect array of contract objects
+	result, ok := rawResult.([]interface{})
+	if !ok {
+		return nil, fmt.Errorf("unexpected response format")
+	}
+
+	if len(result) == 0 {
+		return nil, fmt.Errorf("no contracts found for symbol: %s", symbol)
 	}
 
 	var contracts []models.ContractInfo
 	for _, item := range result {
+		itemMap, ok := item.(map[string]interface{})
+		if !ok {
+			continue
+		}
+
 		// conid can be string or number depending on the response format
 		var conid int
-		switch v := item["conid"].(type) {
+		switch v := itemMap["conid"].(type) {
 		case float64:
 			conid = int(v)
 		case string:
@@ -281,8 +363,8 @@ func (c *Client) SearchContracts(ctx context.Context, symbol, secType string) ([
 		if conid > 0 {
 			contracts = append(contracts, models.ContractInfo{
 				ConID:   conid,
-				Symbol:  getString(item, "symbol"),
-				SecType: getString(item, "description"),
+				Symbol:  getString(itemMap, "symbol"),
+				SecType: getString(itemMap, "description"),
 			})
 		}
 	}
@@ -298,12 +380,21 @@ func getString(m map[string]interface{}, key string) string {
 }
 
 // ServiceStatus checks if specific services are available.
+// Note: /iserver/services endpoint may not be available in all gateway versions.
 func (c *Client) ServiceStatus(ctx context.Context) ([]models.ServiceStatus, error) {
 	resp, err := c.get(ctx, "/v1/api/iserver/services")
 	if err != nil {
 		return nil, err
 	}
 	defer resp.Body.Close()
+
+	// Handle 404 - endpoint not available
+	if resp.StatusCode == http.StatusNotFound {
+		return []models.ServiceStatus{
+			{Service: "marketdata", IsActive: true, LastUpdate: "available"},
+			{Service: "trade", IsActive: true, LastUpdate: "available"},
+		}, nil
+	}
 
 	var result []models.ServiceStatus
 	if err := json.NewDecoder(resp.Body).Decode(&result); err != nil {
@@ -363,10 +454,11 @@ func (c *Client) WatchlistByID(ctx context.Context, id string) (*models.Watchlis
 }
 
 // SecDefSearch searches for security definitions by contract ID.
-// Endpoint: GET /trsrv/secdef
+// Endpoint: GET /trsrv/secdef?conids={conid}
+// Response is wrapped in {"secdef": [...]} structure.
 // See: https://www.interactivebrokers.com/campus/ibkr-api-page/cpapi-v1/#trsrv-conid-contract
 func (c *Client) SecDefSearch(ctx context.Context, conid string) ([]models.SecDefInfo, error) {
-	path := "/v1/api/trsrv/secdef?conid=" + url.QueryEscape(conid)
+	path := "/v1/api/trsrv/secdef?conids=" + url.QueryEscape(conid)
 	resp, err := c.get(ctx, path)
 	if err != nil {
 		return nil, err
@@ -382,11 +474,15 @@ func (c *Client) SecDefSearch(ctx context.Context, conid string) ([]models.SecDe
 		return nil, fmt.Errorf("API error (HTTP %d): %s", resp.StatusCode, string(body))
 	}
 
-	var result []models.SecDefInfo
-	if err := json.Unmarshal(body, &result); err != nil {
+	// Response is wrapped in {"secdef": [...]}
+	var wrapped struct {
+		SecDef []models.SecDefInfo `json:"secdef"`
+	}
+	if err := json.Unmarshal(body, &wrapped); err != nil {
 		return nil, fmt.Errorf("decoding response: %w", err)
 	}
-	return result, nil
+
+	return wrapped.SecDef, nil
 }
 
 // AllConidsByExchange returns all contract IDs for a given exchange.

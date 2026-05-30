@@ -1,11 +1,13 @@
 # Binaries
+bin/
 *.exe
 *.exe~
 *.dll
 *.so
 *.dylib
 ib-cli
-ib-cli-* # if we release multiple binaries
+ib-cli-*
+secdef
 
 # Test binary, built with `go test -c`
 *.test

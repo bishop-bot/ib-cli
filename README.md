@@ -10,6 +10,7 @@ A production-grade CLI for Interactive Broker's Client Portal Web API.
 - **Watchlists** - List and retrieve user watchlists
 - **Contract Lookup** - Find security contract details by symbol
 - **Contract API** - Search by conid, all conids by exchange, contract info, trading schedules
+- **Utility Scripts** - Batch fetch security definitions to CSV
 - **Server Info** - Check gateway version and service status
 
 ## Prerequisites
@@ -175,6 +176,63 @@ Contract and security information lookup commands.
 ./ib-cli contract trading-schedule --exchange NASDAQ
 ```
 
+## Utility Scripts
+
+Standalone utility programs that consume the IB Gateway API.
+
+### `secdef`
+Batch fetch security definitions from conid JSON files and export to CSV.
+
+```bash
+# Build
+go build -o secdef ./scripts/secdef.go
+
+# Fetch all conids for an exchange
+./secdef --exchange NYSE
+
+# Limit to first 100 conids
+./secdef --exchange ARCA --limit 100
+
+# Custom output directory and workers
+./secdef --exchange NASDAQ --output-dir ./data --workers 5
+
+# Log errors to file
+./secdef --exchange NYSE --error-log errors.csv
+```
+
+**Output:** `{exchange}_YYYYMMDD.csv` with columns:
+`conid`, `ticker`, `currency`, `listingExchange`, `countryCode`, `name`, `assetClass`, `group`, `sector`, `sectorGroup`, `type`, `hasOptions`, `fullName`
+
+**Flags:**
+- `-e, --exchange` Exchange name (required)
+- `-l, --limit` Limit number of conids (0 = all)
+- `-o, --output-dir` Output directory (default: .)
+- `--conid-dir` Directory with conid JSON files (default: assets/conid)
+- `--error-log` File to log failed lookups
+- `-w, --workers` Concurrent workers (default: 3)
+- `--delay` Delay between requests (default: 300ms)
+- `-c, --config` Config file path (default: config.toml)
+- `-v, --verbose` Enable verbose output
+
+### `secdef_instrument`
+Map CSV output to secdef instrument format for trading systems.
+
+```bash
+# Build
+go build -o secdef_instrument ./scripts/secdef_instrument.go
+
+# Map NYSE CSV to instrument format
+./secdef_instrument --exchange NYSE NYSE_20260524.csv
+
+# Output: NYSE_20260524_mapped.csv
+```
+
+**Flags:**
+- `-e, --exchange` Exchange value (required)
+
+**Output:** `{input}_mapped.csv` with columns:
+`id`, `symbol`, `name`, `publisher`, `instrument_class`, `currency`, `exchange`, `asset`, `security_type`, etc.
+
 ## Bar Sizes
 
 | Size | Description |
@@ -207,7 +265,7 @@ Contract and security information lookup commands.
 
 ```
 ib-cli/
-├── cmd/           # CLI commands (cobra)
+├── cmd/           # CLI tool commands (cobra)
 │   ├── root.go    # Root command
 │   ├── auth.go    # Authentication commands
 │   ├── history.go # Historical data command
@@ -219,6 +277,9 @@ ib-cli/
 │   ├── auth/      # Session encryption/decryption
 │   ├── config/    # Configuration management
 │   └── models/    # Data models
+├── scripts/       # Utility programs (consume IB API)
+│   ├── secdef.go     # Batch fetch security definitions to CSV
+│   └── secdef_instrument.go # CSV column mapping utility
 └── main.go
 ```
 

@@ -1,0 +1,502 @@
+conid,ticker,currency,listingExchange,countryCode,name,assetClass,group,sector,sectorGroup,type,hasOptions,fullName
+1715006,A,USD,NYSE,US,AGILENT TECHNOLOGIES INC,STK,Healthcare-Products,"Consumer, Non-cyclical",Diagnostic Equipment,COMMON,true,A
+265598,AAPL,USD,NASDAQ,US,APPLE INC,STK,Computers,Technology,Computers,COMMON,true,AAPL
+118089500,ABBV,USD,NYSE,US,ABBVIE INC,STK,Pharmaceuticals,"Consumer, Non-cyclical",Medical-Drugs,COMMON,true,ABBV
+459530964,ABNB,USD,NASDAQ,US,AIRBNB INC-CLASS A,STK,Internet,Communications,E-Commerce/Services,COMMON,true,ABNB
+4065,ABT,USD,NYSE,US,ABBOTT LABORATORIES .,STK,Healthcare-Products,"Consumer, Non-cyclical",Medical Products,COMMON,true,ABT
+10763362,ACGL,USD,NASDAQ,US,ARCH CAPITAL GROUP LTD,STK,Insurance,Financial,Property/Casualty Ins,COMMON,true,ACGL
+67889930,ACN,USD,NYSE,US,ACCENTURE PLC-CL A,STK,Computers,Technology,Computer Services,COMMON,true,ACN
+265768,ADBE,USD,NASDAQ,US,ADOBE INC,STK,Software,Technology,Electronic Forms,COMMON,true,ADBE
+4157,ADI,USD,NASDAQ,US,ANALOG DEVICES INC,STK,Semiconductors,Technology,Electronic Compo-Semicon,COMMON,true,ADI
+4165,ADM,USD,NYSE,US,ARCHER-DANIELS-MIDLAND CO,STK,Agriculture,"Consumer, Non-cyclical",Agricultural Operations,COMMON,true,ADM
+4661,ADP,USD,NASDAQ,US,AUTOMATIC DATA PROCESSING,STK,Commercial Services,"Consumer, Non-cyclical",Commercial Services,COMMON,true,ADP
+265681,ADSK,USD,NASDAQ,US,AUTODESK INC,STK,Software,Technology,Computer Aided Design,COMMON,true,ADSK
+13181,AEE,USD,NYSE,US,AMEREN CORP,STK,Electric,Utilities,Electric-Integrated,COMMON,true,AEE
+4211,AEP,USD,NASDAQ,US,AMERICAN ELECTRIC POWER,STK,Electric,Utilities,Electric-Integrated,COMMON,true,AEP
+2560358,AES,USD,NYSE,US,AES CORP,STK,Electric,Utilities,Electric-Integrated,COMMON,true,AES
+4227,AFL,USD,NYSE,US,AFLAC INC,STK,Insurance,Financial,Life/Health Insurance,COMMON,true,AFL
+61319701,AIG,USD,NYSE,US,AMERICAN INTERNATIONAL GROUP,STK,Insurance,Financial,Multi-line Insurance,COMMON,true,AIG
+27727424,AIZ,USD,NYSE,US,ASSURANT INC,STK,Insurance,Financial,Property/Casualty Ins,COMMON,true,AIZ
+4325,AJG,USD,NYSE,US,ARTHUR J GALLAGHER & CO,STK,Insurance,Financial,Insurance Brokers,COMMON,true,AJG
+6220356,AKAM,USD,NASDAQ,US,AKAMAI TECHNOLOGIES INC,STK,Software,Technology,Computer Software,COMMON,true,AKAM
+4347,ALB,USD,NYSE,US,ALBEMARLE CORP,STK,Chemicals,Basic Materials,Chemicals-Specialty,COMMON,true,ALB
+11459264,ALGN,USD,NASDAQ,US,ALIGN TECHNOLOGY INC,STK,Healthcare-Products,"Consumer, Non-cyclical",Medical Products,COMMON,true,ALGN
+4357,ALL,USD,NYSE,US,ALLSTATE CORP,STK,Insurance,Financial,Multi-line Insurance,COMMON,true,ALL
+138438437,ALLE,USD,NYSE,US,ALLEGION PLC,STK,Electronics,Industrial,Electronic Secur Devices,COMMON,true,ALLE
+266093,AMAT,USD,NASDAQ,US,APPLIED MATERIALS INC,STK,Semiconductors,Technology,Semiconductor Equipment,COMMON,true,AMAT
+845305949,AMCR,USD,NYSE,US,AMCOR PLC,STK,Packaging&amp;Containers,Industrial,Containers-Paper/Plastic,COMMON,true,AMCR
+4391,AMD,USD,NASDAQ,US,ADVANCED MICRO DEVICES,STK,Semiconductors,Technology,Electronic Compo-Semicon,COMMON,true,AMD
+4392,AME,USD,NYSE,US,AMETEK INC,STK,Electrical Compo&amp;Equip,Industrial,Electric Products-Misc,COMMON,true,AME
+266145,AMGN,USD,NASDAQ,US,AMGEN INC,STK,Biotechnology,"Consumer, Non-cyclical",Medical-Biomedical/Gene,COMMON,true,AMGN
+35970258,AMP,USD,NYSE,US,AMERIPRISE FINANCIAL INC,STK,Diversified Finan Serv,Financial,Invest Mgmnt/Advis Serv,COMMON,true,AMP
+99831145,AMT,USD,NYSE,US,AMERICAN TOWER CORP,STK,REITS,Financial,REITS-Diversified,REIT,true,AMT
+3691937,AMZN,USD,NASDAQ,US,AMAZON.COM INC,STK,Internet,Communications,E-Commerce/Products,COMMON,true,AMZN
+740948854,ANET,USD,NYSE,US,ARISTA NETWORKS INC,STK,Telecommunications,Communications,Networking Products,COMMON,true,ANET
+414366114,AON,USD,NYSE,US,AON PLC-CLASS A,STK,Insurance,Financial,Insurance Brokers,COMMON,true,AON
+12225,AOS,USD,NYSE,US,SMITH (A.O.) CORP,STK,Miscellaneous Manufactur,Industrial,Diversified Manufact Op,COMMON,true,AOS
+474515500,APA,USD,NASDAQ,US,APA CORP,STK,Oil&amp;Gas,Energy,Oil Comp-Explor&amp;Prodtn,COMMON,true,APA
+4487,APD,USD,NYSE,US,AIR PRODUCTS & CHEMICALS INC,STK,Chemicals,Basic Materials,Industrial Gases,COMMON,true,APD
+4493,APH,USD,NYSE,US,AMPHENOL CORP-CL A,STK,Electronics,Industrial,Electronic Connectors,COMMON,true,APH
+535288388,APO,USD,NYSE,US,APOLLO GLOBAL MANAGEMENT INC,STK,Diversified Finan Serv,Financial,Invest Mgmnt/Advis Serv,COMMON,true,APO
+481863646,APP,USD,NASDAQ,US,APPLOVIN CORP-CLASS A,STK,Internet,Communications,E-Marketing/Info,COMMON,true,APP
+748351585,APTV,USD,NYSE,US,APTIV PLC,STK,Auto Parts&amp;Equipment,"Consumer, Cyclical",Auto/Trk Prts&amp;Equip-Orig,COMMON,true,APTV
+6607487,ARE,USD,NYSE,US,ALEXANDRIA REAL ESTATE EQUIT,STK,REITS,Financial,REITS-Health Care,REIT,true,ARE
+341904548,ARES,USD,NYSE,US,ARES MANAGEMENT CORP - A,STK,Diversified Finan Serv,Financial,Invest Mgmnt/Advis Serv,COMMON,true,ARES
+4644,ATO,USD,NYSE,US,ATMOS ENERGY CORP,STK,Gas,Utilities,Gas-Distribution,COMMON,true,ATO
+5026974,AVB,USD,NYSE,US,AVALONBAY COMMUNITIES INC,STK,REITS,Financial,REITS-Apartments,REIT,true,AVB
+313130367,AVGO,USD,NASDAQ,US,BROADCOM INC,STK,Semiconductors,Technology,Electronic Compo-Semicon,COMMON,true,AVGO
+4694,AVY,USD,NYSE,US,AVERY DENNISON CORP,STK,Household Products/Wares,"Consumer, Non-cyclical",Office Supplies&amp;Forms,COMMON,true,AVY
+50530752,AWK,USD,NYSE,US,AMERICAN WATER WORKS CO INC,STK,Water,Utilities,Water,COMMON,true,AWK
+272104927,AXON,USD,NASDAQ,US,AXON ENTERPRISE INC,STK,Miscellaneous Manufactur,Industrial,Firearms&amp;Ammunition,COMMON,true,AXON
+4721,AXP,USD,NYSE,US,AMERICAN EXPRESS CO,STK,Diversified Finan Serv,Financial,Finance-Credit Card,COMMON,true,AXP
+4750,AZO,USD,NYSE,US,AUTOZONE INC,STK,Retail,"Consumer, Cyclical",Retail-Auto Parts,COMMON,true,AZO
+4762,BA,USD,NYSE,US,BOEING CO/THE,STK,Aerospace/Defense,Industrial,Aerospace/Defense,COMMON,true,BA
+10098,BAC,USD,NYSE,US,BANK OF AMERICA CORP,STK,Banks,Financial,Diversified Banking Inst,COMMON,true,BAC
+5052,BALL,USD,NYSE,US,BALL CORP,STK,Packaging&amp;Containers,Industrial,Containers-Metal/Glass,COMMON,true,BALL
+8111188,BAX,USD,NYSE,US,BAXTER INTERNATIONAL INC.,STK,Healthcare-Products,"Consumer, Non-cyclical",Medical Products,COMMON,true,BAX
+4817,BBY,USD,NYSE,US,BEST BUY CO INC,STK,Retail,"Consumer, Cyclical",Retail-Consumer Electron,COMMON,true,BBY
+4886,BDX,USD,NYSE,US,BECTON DICKINSON AND CO,STK,Pharmaceuticals,"Consumer, Non-cyclical",Drug Delivery Systems,COMMON,true,BDX
+4906,BEN,USD,NYSE,US,FRANKLIN RESOURCES INC,STK,Diversified Finan Serv,Financial,Invest Mgmnt/Advis Serv,COMMON,true,BEN
+663174498,BG,USD,NYSE,US,BUNGE GLOBAL SA,STK,Agriculture,"Consumer, Non-cyclical",Agricultural Operations,COMMON,true,BG
+26734397,BIIB,USD,NASDAQ,US,BIOGEN INC,STK,Biotechnology,"Consumer, Non-cyclical",Medical-Biomedical/Gene,COMMON,true,BIIB
+44986804,BK,USD,NYSE,US,BANK OF NEW YORK MELLON CORP,STK,Banks,Financial,Fiduciary Banks,COMMON,true,BNY
+308728373,BKNG,USD,NASDAQ,US,BOOKING HOLDINGS INC,STK,Internet,Communications,E-Commerce/Services,COMMON,true,BKNG
+281316445,BKR,USD,NASDAQ,US,BAKER HUGHES CO,STK,Oil&amp;Gas Services,Energy,Oil-Field Services,COMMON,true,BKR
+34851874,BLDR,USD,NYSE,US,BUILDERS FIRSTSOURCE INC,STK,Building Materials,Industrial,Bldg&amp;Construct Prod-Misc,COMMON,true,BLDR
+729193719,BLK,USD,NYSE,US,BLACKROCK INC,STK,Diversified Finan Serv,Financial,Invest Mgmnt/Advis Serv,COMMON,true,BLK
+5111,BMY,USD,NYSE,US,BRISTOL-MYERS SQUIBB CO,STK,Pharmaceuticals,"Consumer, Non-cyclical",Medical-Drugs,COMMON,true,BMY
+43523793,BR,USD,NYSE,US,BROADRIDGE FINANCIAL SOLUTIO,STK,Software,Technology,Data Processing/Mgmt,COMMON,true,BR
+6607613,BRO,USD,NYSE,US,BROWN & BROWN INC,STK,Insurance,Financial,Insurance Brokers,COMMON,true,BRO
+5270,BSX,USD,NYSE,US,BOSTON SCIENTIFIC CORP,STK,Healthcare-Products,"Consumer, Non-cyclical",Medical Instruments,COMMON,true,BSX
+372834689,BX,USD,NYSE,US,BLACKSTONE INC,STK,Private Equity,Financial,Private Equity,COMMON,true,BX
+5021340,BXP,USD,NYSE,US,BXP INC,STK,REITS,Financial,REITS-Office Property,REIT,true,BXP
+87335484,C,USD,NYSE,US,CITIGROUP INC,STK,Banks,Financial,Diversified Banking Inst,COMMON,true,C
+5402,CAG,USD,NYSE,US,CONAGRA BRANDS INC,STK,Food,"Consumer, Non-cyclical",Food-Misc/Diversified,COMMON,true,CAG
+5407,CAH,USD,NYSE,US,CARDINAL HEALTH INC,STK,Pharmaceuticals,"Consumer, Non-cyclical",Medical-Whsle Drug Dist,COMMON,true,CAH
+410755397,CARR,USD,NYSE,US,CARRIER GLOBAL CORP,STK,Building Materials,Industrial,Bldg Prod-Air&amp;Heating,COMMON,true,CARR
+267265,CASY,USD,NASDAQ,US,CASEY'S GENERAL STORES INC,STK,Retail,"Consumer, Cyclical",Retail-Convenience Store,COMMON,true,CASY
+5437,CAT,USD,NYSE,US,CATERPILLAR INC,STK,Machinery-Constr&amp;Mining,Industrial,Machinery-Constr&amp;Mining,COMMON,true,CAT
+218939694,CB,USD,NYSE,US,CHUBB LTD,STK,Insurance,Financial,Multi-line Insurance,COMMON,true,CB
+76227954,CBOE,USD,BATS,US,CBOE GLOBAL MARKETS INC,STK,Diversified Finan Serv,Financial,Finance-Other Services,COMMON,true,CBOE
+95514904,CBRE,USD,NYSE,US,CBRE GROUP INC - A,STK,Real Estate,Financial,Real Estate Mgmnt/Servic,COMMON,true,CBRE
+176571182,CCI,USD,NYSE,US,CROWN CASTLE INC,STK,REITS,Financial,REITS-Diversified,REIT,true,CCI
+878372298,CCL,USD,NYSE,US,CARNIVAL CORP LTD,STK,Leisure Time,"Consumer, Cyclical",Cruise Lines,COMMON,true,CCL
+5552,CDNS,USD,NASDAQ,US,CADENCE DESIGN SYS INC,STK,Software,Technology,Computer Aided Design,COMMON,true,CDNS
+130432552,CDW,USD,NASDAQ,US,CDW CORP/DE,STK,Internet,Communications,E-Services/Consulting,COMMON,true,CDW
+538132976,CEG,USD,NASDAQ,US,CONSTELLATION ENERGY,STK,Electric,Utilities,Electric-Generation,COMMON,true,CEG
+35447205,CF,USD,NYSE,US,CF INDUSTRIES HOLDINGS INC,STK,Chemicals,Basic Materials,Agricultural Chemicals,COMMON,true,CF
+167955370,CFG,USD,NYSE,US,CITIZENS FINANCIAL GROUP,STK,Banks,Financial,Commer Banks-Eastern US,COMMON,true,CFG
+5651,CHD,USD,NYSE,US,CHURCH & DWIGHT CO INC,STK,Household Products/Wares,"Consumer, Non-cyclical",Soap&amp;Cleaning Prepar,COMMON,true,CHD
+36320731,CHRW,USD,NASDAQ,US,C.H. ROBINSON WORLDWIDE INC,STK,Transportation,Industrial,Transport-Services,COMMON,true,CHRW
+233674866,CHTR,USD,NASDAQ,US,CHARTER COMMUNICATIONS INC-A,STK,Media,Communications,Cable/Satellite TV,COMMON,true,CHTR
+346403540,CI,USD,NYSE,US,THE CIGNA GROUP,STK,Healthcare-Services,"Consumer, Non-cyclical",Medical-HMO,COMMON,true,CI
+41045553,CIEN,USD,NYSE,US,CIENA CORP,STK,Telecommunications,Communications,Telecommunication Equip,COMMON,true,CIEN
+267661,CINF,USD,NASDAQ,US,CINCINNATI FINANCIAL CORP,STK,Insurance,Financial,Multi-line Insurance,COMMON,true,CINF
+5749,CL,USD,NYSE,US,COLGATE-PALMOLIVE CO,STK,Cosmetics/Personal Care,"Consumer, Non-cyclical",Cosmetics&amp;Toiletries,COMMON,true,CL
+5794,CLX,USD,NYSE,US,CLOROX COMPANY,STK,Household Products/Wares,"Consumer, Non-cyclical",Consumer Products-Misc,COMMON,true,CLX
+267748,CMCSA,USD,NASDAQ,US,COMCAST CORP-CLASS A,STK,Media,Communications,Cable/Satellite TV,COMMON,true,CMCSA
+45127739,CME,USD,NASDAQ,US,CME GROUP INC,STK,Diversified Finan Serv,Financial,Finance-Other Services,COMMON,true,CME
+37655664,CMG,USD,NYSE,US,CHIPOTLE MEXICAN GRILL INC,STK,Retail,"Consumer, Cyclical",Retail-Restaurants,COMMON,true,CMG
+6207,CMI,USD,NYSE,US,CUMMINS INC,STK,Auto Manufacturers,"Consumer, Cyclical",Auto-Med&amp;Heavy Duty Trks,COMMON,true,CMI
+5840,CMS,USD,NYSE,US,CMS ENERGY CORP,STK,Electric,Utilities,Electric-Integrated,COMMON,true,CMS
+13878278,CNC,USD,NYSE,US,CENTENE CORP,STK,Healthcare-Services,"Consumer, Non-cyclical",Medical-HMO,COMMON,true,CNC
+8093,CNP,USD,NYSE,US,CENTERPOINT ENERGY INC,STK,Electric,Utilities,Electric-Integrated,COMMON,true,CNP
+5941,COF,USD,NYSE,US,CAPITAL ONE FINANCIAL CORP,STK,Diversified Finan Serv,Financial,Finance-Credit Card,COMMON,true,COF
+584127832,COHR,USD,NYSE,US,COHERENT CORP,STK,Electronics,Industrial,Lasers-Syst/Components,COMMON,true,COHR
+481691285,COIN,USD,NASDAQ,US,COINBASE GLOBAL INC -CLASS A,STK,Diversified Finan Serv,Financial,Finance-Other Services,COMMON,true,COIN
+685217803,COO,USD,NASDAQ,US,COOPER COS INC/THE,STK,Healthcare-Products,"Consumer, Non-cyclical",Medical Products,COMMON,true,COO
+10885,COP,USD,NYSE,US,CONOCOPHILLIPS,STK,Oil&amp;Gas,Energy,Oil Comp-Explor&amp;Prodtn,COMMON,true,COP
+1714996,COR,USD,NYSE,US,CENCORA INC,STK,Pharmaceuticals,"Consumer, Non-cyclical",Medical-Whsle Drug Dist,COMMON,true,COR
+272997,COST,USD,NASDAQ,US,COSTCO WHOLESALE CORP,STK,Retail,"Consumer, Cyclical",Retail-Discount,COMMON,true,COST
+691994611,CPAY,USD,NYSE,US,CORPAY INC,STK,Commercial Services,"Consumer, Non-cyclical",Commercial Serv-Finance,COMMON,true,CPAY
+5980,CPB,USD,NASDAQ,US,THE CAMPBELL'S COMPANY,STK,Food,"Consumer, Non-cyclical",Food-Misc/Diversified,COMMON,true,CPB
+4728523,CPRT,USD,NASDAQ,US,COPART INC,STK,Distribution/Wholesale,"Consumer, Cyclical",Distribution/Wholesale,COMMON,true,CPRT
+6004,CPT,USD,NYSE,US,CAMDEN PROPERTY TRUST,STK,REITS,Financial,REITS-Apartments,REIT,true,CPT
+655276609,CRH,USD,NYSE,US,CRH PLC,STK,Building Materials,Industrial,Bldg Prod-Cement/Aggreg,COMMON,true,CRH
+2730877,CRL,USD,NYSE,US,CHARLES RIVER LABORATORIES,STK,Healthcare-Services,"Consumer, Non-cyclical",Medical Labs&amp;Testing Srv,COMMON,true,CRL
+29624264,CRM,USD,NYSE,US,SALESFORCE INC,STK,Software,Technology,Enterprise Software/Serv,COMMON,true,CRM
+370757467,CRWD,USD,NASDAQ,US,CROWDSTRIKE HOLDINGS INC - A,STK,Computers,Technology,Computer Data Security,COMMON,true,CRWD
+268084,CSCO,USD,NASDAQ,US,CISCO SYSTEMS INC,STK,Telecommunications,Communications,Networking Products,COMMON,true,CSCO
+6726677,CSGP,USD,NASDAQ,US,COSTAR GROUP INC,STK,Real Estate,Financial,Real Estate Mgmnt/Servic,COMMON,true,CSGP
+6150,CSX,USD,NASDAQ,US,CSX CORP,STK,Transportation,Industrial,Transport-Rail,COMMON,true,CSX
+268149,CTAS,USD,NASDAQ,US,CINTAS CORP,STK,Commercial Services,"Consumer, Non-cyclical",Commercial Services,COMMON,true,CTAS
+4728759,CTSH,USD,NASDAQ,US,COGNIZANT TECH SOLUTIONS-A,STK,Computers,Technology,Computer Services,COMMON,true,CTSH
+366239371,CTVA,USD,NYSE,US,CORTEVA INC,STK,Biotechnology,"Consumer, Non-cyclical",Agricultural Biotech,COMMON,true,CTVA
+274144952,CVNA,USD,NYSE,US,CARVANA CO,STK,Retail,"Consumer, Cyclical",Retail-Automobile,COMMON,true,CVNA
+2585769,CVS,USD,NYSE,US,CVS HEALTH CORP,STK,Pharmaceuticals,"Consumer, Non-cyclical",Pharmacy Services,COMMON,true,CVS
+5684,CVX,USD,NYSE,US,CHEVRON CORP,STK,Oil&amp;Gas,Energy,Oil Comp-Integrated,COMMON,true,CVX
+6327,D,USD,NYSE,US,DOMINION ENERGY INC,STK,Electric,Utilities,Electric-Integrated,COMMON,true,D
+44001820,DAL,USD,NYSE,US,DELTA AIR LINES INC.,STK,Airlines,"Consumer, Cyclical",Airlines,COMMON,true,DAL
+459309417,DASH,USD,NASDAQ,US,DOORDASH INC - A,STK,Internet,Communications,E-Commerce/Services,COMMON,true,DASH
+365921621,DD,USD,NYSE,US,DUPONT DE NEMOURS INC,STK,Chemicals,Basic Materials,Chemicals-Diversified,COMMON,true,DD
+383858515,DDOG,USD,NASDAQ,US,DATADOG INC - CLASS A,STK,Software,Technology,Computer Software,COMMON,true,DDOG
+6393,DE,USD,NYSE,US,DEERE & CO,STK,Machinery-Diversified,Industrial,Machinery-Farm,COMMON,true,DE
+268376,DECK,USD,NYSE,US,DECKERS OUTDOOR CORP,STK,Apparel,"Consumer, Cyclical",Apparel Manufacturers,COMMON,true,DECK
+346218218,DELL,USD,NYSE,US,DELL TECHNOLOGIES -C,STK,Computers,Technology,Computers,COMMON,true,DELL
+70212228,DG,USD,NYSE,US,DOLLAR GENERAL CORP,STK,Retail,"Consumer, Cyclical",Retail-Discount,COMMON,true,DG
+2459465,DGX,USD,NYSE,US,QUEST DIAGNOSTICS INC,STK,Healthcare-Services,"Consumer, Non-cyclical",Medical Labs&amp;Testing Srv,COMMON,true,DGX
+268627,DHI,USD,NYSE,US,DR HORTON INC,STK,Home Builders,"Consumer, Cyclical",Bldg-Residential/Commer,COMMON,true,DHI
+6442,DHR,USD,NYSE,US,DANAHER CORP,STK,Healthcare-Products,"Consumer, Non-cyclical",Diagnostic Equipment,COMMON,true,DHR
+6459,DIS,USD,NYSE,US,WALT DISNEY CO/THE,STK,Media,Communications,Multimedia,COMMON,true,DIS
+31832526,DLR,USD,NYSE,US,DIGITAL REALTY TRUST INC.,STK,REITS,Financial,REITS-Diversified,REIT,true,DLR
+49388062,DLTR,USD,NASDAQ,US,DOLLAR TREE INC,STK,Retail,"Consumer, Cyclical",Retail-Discount,COMMON,true,DLTR
+389700396,DOC,USD,NYSE,US,HEALTHPEAK PROPERTIES INC,STK,REITS,Financial,REITS-Health Care,REIT,true,DOC
+6517,DOV,USD,NYSE,US,DOVER CORP,STK,Machinery-Diversified,Industrial,Machinery-Pumps,COMMON,true,DOV
+356576040,DOW,USD,NYSE,US,DOW INC,STK,Chemicals,Basic Materials,Chemicals-Diversified,COMMON,true,DOW
+29831612,DPZ,USD,NASDAQ,US,DOMINO'S PIZZA INC,STK,Retail,"Consumer, Cyclical",Retail-Restaurants,COMMON,true,DPZ
+661440,DRI,USD,NYSE,US,DARDEN RESTAURANTS INC,STK,Retail,"Consumer, Cyclical",Retail-Restaurants,COMMON,true,DRI
+6585,DTE,USD,NYSE,US,DTE ENERGY COMPANY,STK,Electric,Utilities,Electric-Integrated,COMMON,true,DTE
+110176011,DUK,USD,NYSE,US,DUKE ENERGY CORP,STK,Electric,Utilities,Electric-Integrated,COMMON,true,DUK
+1035459,DVA,USD,NYSE,US,DAVITA INC,STK,Healthcare-Services,"Consumer, Non-cyclical",Dialysis Centers,COMMON,true,DVA
+754442,DVN,USD,NYSE,US,DEVON ENERGY CORP,STK,Oil&amp;Gas,Energy,Oil Comp-Explor&amp;Prodtn,COMMON,true,DVN
+33837089,DXCM,USD,NASDAQ,US,DEXCOM INC,STK,Pharmaceuticals,"Consumer, Non-cyclical",Drug Delivery Systems,COMMON,true,DXCM
+268995,EA,USD,NASDAQ,US,ELECTRONIC ARTS INC,STK,Software,Technology,Entertainment Software,COMMON,true,EA
+4347086,EBAY,USD,NASDAQ,US,EBAY INC,STK,Internet,Communications,E-Commerce/Products,COMMON,true,EBAY
+6682,ECL,USD,NYSE,US,ECOLAB INC,STK,Chemicals,Basic Materials,Chemicals-Specialty,COMMON,true,ECL
+6691,ED,USD,NYSE,US,CONSOLIDATED EDISON INC,STK,Electric,Utilities,Electric-Distribution,COMMON,true,ED
+6735,EFX,USD,NYSE,US,EQUIFAX INC,STK,Commercial Services,"Consumer, Non-cyclical",Commercial Serv-Finance,COMMON,true,EFX
+6477725,EG,USD,NYSE,US,EVEREST GROUP LTD,STK,Insurance,Financial,Reinsurance,COMMON,true,EG
+11899,EIX,USD,NYSE,US,EDISON INTL,STK,Electric,Utilities,Electric-Integrated,COMMON,true,EIX
+1448477,EL,USD,NYSE,US,ESTEE LAUDER COMPANIES-CL A,STK,Cosmetics/Personal Care,"Consumer, Non-cyclical",Cosmetics&amp;Toiletries,COMMON,true,EL
+173962302,ELV,USD,NYSE,US,ELEVANCE HEALTH INC,STK,Healthcare-Services,"Consumer, Non-cyclical",Medical-HMO,COMMON,true,ELV
+6820,EME,USD,NYSE,US,EMCOR GROUP INC,STK,Engineering&amp;Construction,Industrial,Building&amp;Construct-Misc,COMMON,true,EME
+6842,EMR,USD,NYSE,US,EMERSON ELECTRIC CO,STK,Electrical Compo&amp;Equip,Industrial,Electric Products-Misc,COMMON,true,EMR
+6890,EOG,USD,NYSE,US,EOG RESOURCES INC,STK,Oil&amp;Gas,Energy,Oil Comp-Explor&amp;Prodtn,COMMON,true,EOG
+101898880,EPAM,USD,NYSE,US,EPAM SYSTEMS INC,STK,Computers,Technology,Computer Services,COMMON,true,EPAM
+181764593,EQIX,USD,NASDAQ,US,EQUINIX INC,STK,REITS,Financial,REITS-Diversified,REIT,true,EQIX
+6917,EQR,USD,NYSE,US,EQUITY RESIDENTIAL,STK,REITS,Financial,REITS-Apartments,REIT,true,EQR
+57698865,EQT,USD,NYSE,US,EQT CORP,STK,Oil&amp;Gas,Energy,Oil Comp-Explor&amp;Prodtn,COMMON,true,EQT
+4730254,ERIE,USD,NASDAQ,US,ERIE INDEMNITY COMPANY-CL A,STK,Insurance,Financial,Property/Casualty Ins,COMMON,true,ERIE
+182880167,ES,USD,NYSE,US,EVERSOURCE ENERGY,STK,Electric,Utilities,Electric-Distribution,COMMON,true,ES
+6946,ESS,USD,NYSE,US,ESSEX PROPERTY TRUST INC,STK,REITS,Financial,REITS-Apartments,REIT,true,ESS
+118017869,ETN,USD,NYSE,US,EATON CORP PLC,STK,Electrical Compo&amp;Equip,Industrial,Power Conv/Supply Equip,COMMON,true,ETN
+6969,ETR,USD,NYSE,US,ENTERGY CORP,STK,Electric,Utilities,Electric-Integrated,COMMON,true,ETR
+320106069,EVRG,USD,NASDAQ,US,EVERGY INC,STK,Electric,Utilities,Electric-Integrated,COMMON,true,EVRG
+8101142,EW,USD,NYSE,US,EDWARDS LIFESCIENCES CORP,STK,Healthcare-Products,"Consumer, Non-cyclical",Medical Instruments,COMMON,true,EW
+11000,EXC,USD,NASDAQ,US,EXELON CORP,STK,Electric,Utilities,Electric-Distribution,COMMON,true,EXC
+470458975,EXE,USD,NASDAQ,US,EXPAND ENERGY CORP,STK,Oil&amp;Gas,Energy,Oil Comp-Explor&amp;Prodtn,COMMON,true,EXE
+269082,EXPD,USD,NYSE,US,EXPEDITORS INTL WASH INC,STK,Transportation,Industrial,Transport-Services,COMMON,true,EXPD
+98542021,EXPE,USD,NASDAQ,US,EXPEDIA GROUP INC,STK,Internet,Communications,E-Commerce/Services,COMMON,true,EXPE
+30351205,EXR,USD,NYSE,US,EXTRA SPACE STORAGE INC,STK,REITS,Financial,REITS-Storage,REIT,true,EXR
+9599491,F,USD,NYSE,US,FORD MOTOR CO,STK,Auto Manufacturers,"Consumer, Cyclical",Auto-Cars/Light Trucks,COMMON,true,F
+115441080,FANG,USD,NASDAQ,US,DIAMONDBACK ENERGY INC,STK,Oil&amp;Gas,Energy,Oil Comp-Explor&amp;Prodtn,COMMON,true,FANG
+269120,FAST,USD,NASDAQ,US,FASTENAL CO,STK,Distribution/Wholesale,"Consumer, Cyclical",Distribution/Wholesale,COMMON,true,FAST
+7089,FCX,USD,NYSE,US,FREEPORT-MCMORAN INC,STK,Mining,Basic Materials,Metal-Copper,COMMON,true,FCX
+1847145,FDS,USD,NYSE,US,FACTSET RESEARCH SYSTEMS INC,STK,Media,Communications,Multimedia,COMMON,true,FDS
+5100583,FDX,USD,NYSE,US,FEDEX CORPORATION,STK,Transportation,Industrial,Transport-Services,COMMON,true,FDX
+3265376,FE,USD,NYSE,US,FIRSTENERGY CORP,STK,Electric,Utilities,Electric-Integrated,COMMON,true,FE
+6248713,FFIV,USD,NASDAQ,US,F5 INC,STK,Internet,Communications,Internet Infrastr Sftwr,COMMON,true,FFIV
+269280,FICO,USD,NYSE,US,FAIR ISAAC CORP,STK,Software,Technology,Data Processing/Mgmt,COMMON,true,FICO
+37866641,FIS,USD,NYSE,US,FIDELITY NATIONAL INFO SERV,STK,Software,Technology,Data Processing/Mgmt,COMMON,true,FIS
+269315,FISV,USD,NASDAQ,US,FISERV INC,STK,Software,Technology,Data Processing/Mgmt,COMMON,true,FISV
+269318,FITB,USD,NASDAQ,US,FIFTH THIRD BANCORP,STK,Banks,Financial,Super-Regional Banks-US,COMMON,true,FITB
+6607708,FIX,USD,NYSE,US,COMFORT SYSTEMS USA INC,STK,Engineering&amp;Construction,Industrial,Building&amp;Construct-Misc,COMMON,true,FIX
+356858007,FOX,USD,NASDAQ,US,FOX CORP - CLASS B,STK,Media,Communications,Broadcast Serv/Program,COMMON,true,FOX
+356858008,FOXA,USD,NASDAQ,US,FOX CORP - CLASS A,STK,Media,Communications,Broadcast Serv/Program,COMMON,true,FOXA
+535271307,FRT,USD,NYSE,US,FEDERAL REALTY INVS TRUST,STK,REITS,Financial,REITS-Shopping Centers,REIT,true,FRT
+41622169,FSLR,USD,NASDAQ,US,FIRST SOLAR INC,STK,Energy-Alternate Sources,Energy,Energy-Alternate Sources,COMMON,true,FSLR
+70236214,FTNT,USD,NASDAQ,US,FORTINET INC,STK,Computers,Technology,Computer Data Security,COMMON,true,FTNT
+236074120,FTV,USD,NYSE,US,FORTIVE CORP,STK,Electronics,Industrial,Electronic Measur Instr,COMMON,true,FTV
+7496,GD,USD,NYSE,US,GENERAL DYNAMICS CORP,STK,Aerospace/Defense,Industrial,Aerospace/Defense,COMMON,true,GD
+188986978,GDDY,USD,NYSE,US,GODADDY INC - CLASS A,STK,Internet,Communications,Web Hosting/Design,COMMON,true,GDDY
+498843743,GE,USD,NYSE,US,GENERAL ELECTRIC,STK,Aerospace/Defense,Industrial,Aerospace/Defense-Equip,COMMON,true,GE
+601776309,GEHC,USD,NASDAQ,US,GE HEALTHCARE TECHNOLOGY,STK,Healthcare-Products,"Consumer, Non-cyclical",Medical Imaging Systems,COMMON,true,GEHC
+390332324,GEN,USD,NASDAQ,US,GEN DIGITAL INC,STK,Internet,Communications,Internet Security,COMMON,true,GEN
+691984365,GEV,USD,NYSE,US,GE VERNOVA INC,STK,Machinery-Constr&amp;Mining,Industrial,Machinery-Electric Util,COMMON,true,GEV
+269753,GILD,USD,NASDAQ,US,GILEAD SCIENCES INC,STK,Biotechnology,"Consumer, Non-cyclical",Medical-Biomedical/Gene,COMMON,true,GILD
+7616,GIS,USD,NYSE,US,GENERAL MILLS INC,STK,Food,"Consumer, Non-cyclical",Food-Misc/Diversified,COMMON,true,GIS
+375868349,GL,USD,NYSE,US,GLOBE LIFE INC,STK,Insurance,Financial,Life/Health Insurance,COMMON,true,GL
+7655,GLW,USD,NYSE,US,CORNING INC,STK,Telecommunications,Communications,Telecom Eq Fiber Optics,COMMON,true,GLW
+80986742,GM,USD,NYSE,US,GENERAL MOTORS CO,STK,Auto Manufacturers,"Consumer, Cyclical",Auto-Cars/Light Trucks,COMMON,true,GM
+72529783,GNRC,USD,NYSE,US,GENERAC HOLDINGS INC,STK,Electrical Compo&amp;Equip,Industrial,Power Conv/Supply Equip,COMMON,true,GNRC
+208813720,GOOG,USD,NASDAQ,US,ALPHABET INC-CL C,STK,Internet,Communications,Web Portals/ISP,COMMON,true,GOOG
+208813719,GOOGL,USD,NASDAQ,US,ALPHABET INC-CL A,STK,Internet,Communications,Web Portals/ISP,COMMON,true,GOOGL
+7745,GPC,USD,NYSE,US,GENUINE PARTS CO,STK,Retail,"Consumer, Cyclical",Retail-Auto Parts,COMMON,true,GPC
+11477774,GPN,USD,NYSE,US,GLOBAL PAYMENTS INC,STK,Commercial Services,"Consumer, Non-cyclical",Commercial Serv-Finance,COMMON,true,GPN
+76791198,GRMN,USD,NYSE,US,GARMIN LTD,STK,Electronics,Industrial,Electronic Compo-Misc,COMMON,true,GRMN
+4627828,GS,USD,NYSE,US,GOLDMAN SACHS GROUP INC,STK,Banks,Financial,Diversified Banking Inst,COMMON,true,GS
+7867,GWW,USD,NYSE,US,WW GRAINGER INC,STK,Distribution/Wholesale,"Consumer, Cyclical",Distribution/Wholesale,COMMON,true,GWW
+7890,HAL,USD,NYSE,US,HALLIBURTON CO,STK,Oil&amp;Gas Services,Energy,Oil-Field Services,COMMON,true,HAL
+754956,HAS,USD,NASDAQ,US,HASBRO INC,STK,Toys/Games/Hobbies,"Consumer, Cyclical",Toys,COMMON,true,HAS
+270018,HBAN,USD,NASDAQ,US,HUNTINGTON BANCSHARES INC,STK,Banks,Financial,Super-Regional Banks-US,COMMON,true,HBAN
+85076790,HCA,USD,NYSE,US,HCA HEALTHCARE INC,STK,Healthcare-Services,"Consumer, Non-cyclical",Medical-Hospitals,COMMON,true,HCA
+7930,HD,USD,NYSE,US,HOME DEPOT INC,STK,Retail,"Consumer, Cyclical",Retail-Building Products,COMMON,true,HD
+1217009,HIG,USD,NYSE,US,HARTFORD INSURANCE GROUP INC,STK,Insurance,Financial,Multi-line Insurance,COMMON,true,HIG
+86033355,HII,USD,NYSE,US,HUNTINGTON INGALLS INDUSTRIE,STK,Shipbuilding,Industrial,Shipbuilding,COMMON,true,HII
+257944570,HLT,USD,NYSE,US,HILTON WORLDWIDE HOLDINGS IN,STK,Lodging,"Consumer, Cyclical",Hotels&amp;Motels,COMMON,true,HLT
+4350,HON,USD,NASDAQ,US,HONEYWELL INTERNATIONAL INC,STK,Electronics,Industrial,Instruments-Controls,COMMON,true,HON
+504546674,HOOD,USD,NASDAQ,US,ROBINHOOD MARKETS INC - A,STK,Internet,Communications,Internet Brokers,COMMON,true,HOOD
+209411798,HPE,USD,NYSE,US,HEWLETT PACKARD ENTERPRISE,STK,Computers,Technology,Computers,COMMON,true,HPE
+209411801,HPQ,USD,NYSE,US,HP INC,STK,Computers,Technology,Computers,COMMON,true,HPQ
+8153,HRL,USD,NYSE,US,HORMEL FOODS CORP,STK,Food,"Consumer, Non-cyclical",Food-Meat Products,COMMON,true,HRL
+3655640,HSIC,USD,NASDAQ,US,HENRY SCHEIN INC,STK,Pharmaceuticals,"Consumer, Non-cyclical",Medical-Whsle Drug Dist,COMMON,true,HSIC
+8057,HST,USD,NASDAQ,US,HOST HOTELS & RESORTS INC,STK,REITS,Financial,REITS-Hotels,REIT,true,HST
+8199,HSY,USD,NYSE,US,HERSHEY CO/THE,STK,Food,"Consumer, Non-cyclical",Food-Confectionery,COMMON,true,HSY
+216386790,HUBB,USD,NYSE,US,HUBBELL INC,STK,Electronics,Industrial,Electronic Compo-Misc,COMMON,true,HUBB
+8251,HUM,USD,NYSE,US,HUMANA INC,STK,Healthcare-Services,"Consumer, Non-cyclical",Medical-HMO,COMMON,true,HUM
+403121976,HWM,USD,NYSE,US,HOWMET AEROSPACE INC,STK,Aerospace/Defense,Industrial,Aerospace/Defense-Equip,COMMON,true,HWM
+43645865,IBKR,USD,NASDAQ,US,INTERACTIVE BROKERS GRO-CL A,STK,Diversified Finan Serv,Financial,Finance-Invest Bnkr/Brkr,COMMON,true,IBKR
+8314,IBM,USD,NYSE,US,INTL BUSINESS MACHINES CORP,STK,Computers,Technology,Computer Services,COMMON,true,IBM
+136370275,ICE,USD,NYSE,US,INTERCONTINENTAL EXCHANGE IN,STK,Diversified Finan Serv,Financial,Finance-Other Services,COMMON,true,ICE
+270413,IDXX,USD,NASDAQ,US,IDEXX LABORATORIES INC,STK,Healthcare-Products,"Consumer, Non-cyclical",Diagnostic Kits,COMMON,true,IDXX
+8377,IEX,USD,NYSE,US,IDEX CORP,STK,Machinery-Diversified,Industrial,Machinery-General Indust,COMMON,true,IEX
+8385,IFF,USD,NYSE,US,INTL FLAVORS & FRAGRANCES,STK,Chemicals,Basic Materials,Chemicals-Specialty,COMMON,true,IFF
+4369855,INCY,USD,NASDAQ,US,INCYTE CORP,STK,Biotechnology,"Consumer, Non-cyclical",Medical-Biomedical/Gene,COMMON,true,INCY
+270639,INTC,USD,NASDAQ,US,INTEL CORP,STK,Semiconductors,Technology,Electronic Compo-Semicon,COMMON,true,INTC
+270662,INTU,USD,NASDAQ,US,INTUIT INC,STK,Software,Technology,Applications Software,COMMON,true,INTU
+264405214,INVH,USD,NYSE,US,INVITATION HOMES INC,STK,REITS,Financial,REITS-Apartments,REIT,true,INVH
+8511,IP,USD,NYSE,US,INTERNATIONAL PAPER CO,STK,Forest Products&amp;Paper,Basic Materials,Paper&amp;Related Products,COMMON,true,IP
+295757261,IQV,USD,NYSE,US,IQVIA HOLDINGS INC,STK,Healthcare-Services,"Consumer, Non-cyclical",Medical Labs&amp;Testing Srv,COMMON,true,IQV
+404509190,IR,USD,NYSE,US,INGERSOLL-RAND INC,STK,Machinery-Diversified,Industrial,Machinery-Pumps,COMMON,true,IR
+180350774,IRM,USD,NYSE,US,IRON MOUNTAIN INC,STK,REITS,Financial,REITS-Storage,REIT,true,IRM
+9063285,ISRG,USD,NASDAQ,US,INTUITIVE SURGICAL INC,STK,Healthcare-Products,"Consumer, Non-cyclical",Medical Instruments,COMMON,true,ISRG
+4457287,IT,USD,NYSE,US,GARTNER INC,STK,Computers,Technology,Computer Services,COMMON,true,IT
+8620,ITW,USD,NYSE,US,ILLINOIS TOOL WORKS,STK,Miscellaneous Manufactur,Industrial,Diversified Manufact Op,COMMON,true,ITW
+47550606,IVZ,USD,NYSE,US,INVESCO LTD,STK,Diversified Finan Serv,Financial,Invest Mgmnt/Advis Serv,COMMON,true,IVZ
+582332987,J,USD,NYSE,US,JACOBS SOLUTIONS INC,STK,Engineering&amp;Construction,Industrial,Engineering/R&amp;D Services,COMMON,true,J
+270825,JBHT,USD,NASDAQ,US,HUNT (JB) TRANSPRT SVCS INC,STK,Transportation,Industrial,Transport-Truck,COMMON,true,JBHT
+4457282,JBL,USD,NYSE,US,JABIL INC,STK,Electronics,Industrial,Electronic Compo-Misc,COMMON,true,JBL
+244164913,JCI,USD,NYSE,US,JOHNSON CONTROLS INTERNATION,STK,Building Materials,Industrial,Bldg Prod-Air&amp;Heating,COMMON,true,JCI
+270869,JKHY,USD,NASDAQ,US,JACK HENRY & ASSOCIATES INC,STK,Software,Technology,Data Processing/Mgmt,COMMON,true,JKHY
+8719,JNJ,USD,NYSE,US,JOHNSON & JOHNSON,STK,Pharmaceuticals,"Consumer, Non-cyclical",Medical-Drugs,COMMON,true,JNJ
+1520593,JPM,USD,NYSE,US,JPMORGAN CHASE & CO,STK,Banks,Financial,Diversified Banking Inst,COMMON,true,JPM
+324057162,KDP,USD,NASDAQ,US,KEURIG DR PEPPER INC,STK,Beverages,"Consumer, Non-cyclical",Beverages-Non-alcoholic,COMMON,true,KDP
+8809,KEY,USD,NYSE,US,KEYCORP,STK,Banks,Financial,Super-Regional Banks-US,COMMON,true,KEY
+170167160,KEYS,USD,NYSE,US,KEYSIGHT TECHNOLOGIES IN,STK,Electronics,Industrial,Electronic Measur Instr,COMMON,true,KEYS
+199169586,KHC,USD,NASDAQ,US,KRAFT HEINZ CO/THE,STK,Food,"Consumer, Non-cyclical",Food-Misc/Diversified,COMMON,true,KHC
+8845,KIM,USD,NYSE,US,KIMCO REALTY CORP,STK,REITS,Financial,REITS-Shopping Centers,REIT,true,KIM
+321328198,KKR,USD,NYSE,US,KKR & CO INC,STK,Private Equity,Financial,Private Equity,COMMON,true,KKR
+270957,KLAC,USD,NASDAQ,US,KLA CORP,STK,Semiconductors,Technology,Semiconductor Equipment,COMMON,true,KLAC
+8864,KMB,USD,NASDAQ,US,KIMBERLY-CLARK CORP,STK,Household Products/Wares,"Consumer, Non-cyclical",Consumer Products-Misc,COMMON,true,KMB
+83975037,KMI,USD,NYSE,US,KINDER MORGAN INC,STK,Pipelines,Energy,Pipelines,COMMON,true,KMI
+8894,KO,USD,NYSE,US,COCA-COLA CO/THE,STK,Beverages,"Consumer, Non-cyclical",Beverages-Non-alcoholic,COMMON,true,KO
+8908,KR,USD,NYSE,US,KROGER CO,STK,Food,"Consumer, Non-cyclical",Food-Retail,COMMON,true,KR
+629043863,KVUE,USD,NYSE,US,KENVUE INC,STK,Cosmetics/Personal Care,"Consumer, Non-cyclical",Cosmetics&amp;Toiletries,COMMON,true,KVUE
+9252,L,USD,NYSE,US,LOEWS CORP,STK,Insurance,Financial,Multi-line Insurance,COMMON,true,L
+134280621,LDOS,USD,NYSE,US,LEIDOS HOLDINGS INC,STK,Computers,Technology,Computer Services,COMMON,true,LDOS
+9091,LEN,USD,NYSE,US,LENNAR CORP-A,STK,Home Builders,"Consumer, Cyclical",Bldg-Residential/Commer,COMMON,true,LEN
+703660032,LH,USD,NYSE,US,LABCORP HOLDINGS INC,STK,Healthcare-Services,"Consumer, Non-cyclical",Medical Labs&amp;Testing Srv,COMMON,true,LH
+371886040,LHX,USD,NYSE,US,L3HARRIS TECHNOLOGIES INC,STK,Aerospace/Defense,Industrial,Aerospace/Defense-Equip,COMMON,true,LHX
+6608113,LII,USD,NYSE,US,LENNOX INTERNATIONAL INC,STK,Building Materials,Industrial,Bldg Prod-Air&amp;Heating,COMMON,true,LII
+617155599,LIN,USD,NASDAQ,US,LINDE PLC,STK,Chemicals,Basic Materials,Industrial Gases,COMMON,true,LIN
+201113895,LITE,USD,NASDAQ,US,LUMENTUM HOLDINGS INC,STK,Computers,Technology,Computers-Other,COMMON,true,LITE
+9160,LLY,USD,NYSE,US,ELI LILLY & CO,STK,Pharmaceuticals,"Consumer, Non-cyclical",Medical-Drugs,COMMON,true,LLY
+611191,LMT,USD,NYSE,US,LOCKHEED MARTIN CORP,STK,Aerospace/Defense,Industrial,Aerospace/Defense,COMMON,true,LMT
+5026984,LNT,USD,NASDAQ,US,ALLIANT ENERGY CORP,STK,Electric,Utilities,Electric-Integrated,COMMON,true,LNT
+9199,LOW,USD,NYSE,US,LOWE'S COS INC,STK,Retail,"Consumer, Cyclical",Retail-Building Products,COMMON,true,LOW
+732440574,LRCX,USD,NASDAQ,US,LAM RESEARCH CORP,STK,Semiconductors,Technology,Semiconductor Equipment,COMMON,true,LRCX
+45157951,LULU,USD,NASDAQ,US,LULULEMON ATHLETICA INC,STK,Retail,"Consumer, Cyclical",Retail-Apparel/Shoe,COMMON,true,LULU
+9282,LUV,USD,NYSE,US,SOUTHWEST AIRLINES CO,STK,Airlines,"Consumer, Cyclical",Airlines,COMMON,true,LUV
+32602412,LVS,USD,NYSE,US,LAS VEGAS SANDS CORP,STK,Lodging,"Consumer, Cyclical",Casino Hotels,COMMON,true,LVS
+74866700,LYB,USD,NYSE,US,LYONDELLBASELL INDU-CL A,STK,Chemicals,Basic Materials,Chemicals-Diversified,COMMON,true,LYB
+37511786,LYV,USD,NYSE,US,LIVE NATION ENTERTAINMENT IN,STK,Entertainment,"Consumer, Cyclical",Theaters,COMMON,true,LYV
+38685693,MA,USD,NYSE,US,MASTERCARD INC - A,STK,Diversified Finan Serv,Financial,Finance-Credit Card,COMMON,true,MA
+9317,MAA,USD,NYSE,US,MID-AMERICA APARTMENT COMM,STK,REITS,Financial,REITS-Apartments,REIT,true,MAA
+9358,MAR,USD,NASDAQ,US,MARRIOTT INTERNATIONAL -CL A,STK,Lodging,"Consumer, Cyclical",Hotels&amp;Motels,COMMON,true,MAR
+9360,MAS,USD,NYSE,US,MASCO CORP,STK,Building Materials,Industrial,Bldg Prod-Wood,COMMON,true,MAS
+9408,MCD,USD,NYSE,US,MC DONALD'S-CORP,STK,Retail,"Consumer, Cyclical",Retail-Restaurants,COMMON,true,MCD
+271568,MCHP,USD,NASDAQ,US,MICROCHIP TECHNOLOGY INC,STK,Semiconductors,Technology,Electronic Compo-Semicon,COMMON,true,MCHP
+9657,MCK,USD,NYSE,US,MCKESSON CORP,STK,Pharmaceuticals,"Consumer, Non-cyclical",Medical-Whsle Drug Dist,COMMON,true,MCK
+6497,MCO,USD,NYSE,US,MOODY'S CORP,STK,Commercial Services,"Consumer, Non-cyclical",Commercial Serv-Finance,COMMON,true,MCO
+113599091,MDLZ,USD,NASDAQ,US,MONDELEZ INTERNATIONAL INC-A,STK,Food,"Consumer, Non-cyclical",Food-Confectionery,COMMON,true,MDLZ
+181387075,MDT,USD,NYSE,US,MEDTRONIC PLC,STK,Healthcare-Products,"Consumer, Non-cyclical",Medical Products,COMMON,true,MDT
+8093509,MET,USD,NYSE,US,METLIFE INC,STK,Insurance,Financial,Multi-line Insurance,COMMON,true,MET
+107113386,META,USD,NASDAQ,US,META PLATFORMS INC-CLASS A,STK,Internet,Communications,Internet Content-Entmnt,COMMON,true,META
+9560,MGM,USD,NYSE,US,MGM RESORTS INTERNATIONAL,STK,Lodging,"Consumer, Cyclical",Casino Hotels,COMMON,true,MGM
+271556,MKC,USD,NYSE,US,MCCORMICK & CO-NON VTG SHRS,STK,Food,"Consumer, Non-cyclical",Food-Misc/Diversified,COMMON,true,MKC
+9690,MLM,USD,NYSE,US,MARTIN MARIETTA MATERIALS,STK,Building Materials,Industrial,Bldg Prod-Cement/Aggreg,COMMON,true,MLM
+9720,MMM,USD,NYSE,US,3M CO,STK,Miscellaneous Manufactur,Industrial,Diversified Manufact Op,COMMON,true,MMM
+196986496,MNST,USD,NASDAQ,US,MONSTER BEVERAGE CORP,STK,Beverages,"Consumer, Non-cyclical",Beverages-Non-alcoholic,COMMON,true,MNST
+9769,MO,USD,NYSE,US,ALTRIA GROUP INC,STK,Agriculture,"Consumer, Non-cyclical",Tobacco,COMMON,true,MO
+88292752,MOS,USD,NYSE,US,MOSAIC CO/THE,STK,Chemicals,Basic Materials,Agricultural Chemicals,COMMON,true,MOS
+89495776,MPC,USD,NYSE,US,MARATHON PETROLEUM CORP,STK,Oil&amp;Gas,Energy,Oil Refining&amp;Marketing,COMMON,true,MPC
+32106121,MPWR,USD,NASDAQ,US,MONOLITHIC POWER SYSTEMS INC,STK,Semiconductors,Technology,Electronic Compo-Semicon,COMMON,true,MPWR
+70101545,MRK,USD,NYSE,US,MERCK & CO INC,STK,Pharmaceuticals,"Consumer, Non-cyclical",Medical-Drugs,COMMON,true,MRK
+344809106,MRNA,USD,NASDAQ,US,MODERNA INC,STK,Biotechnology,"Consumer, Non-cyclical",Medical-Biomedical/Gene,COMMON,true,MRNA
+9705,MRSH,USD,NYSE,US,MARSH & MCLENNAN COS,STK,Insurance,Financial,Insurance Brokers,COMMON,true,MRSH
+2841574,MS,USD,NYSE,US,MORGAN STANLEY,STK,Banks,Financial,Diversified Banking Inst,COMMON,true,MS
+47101335,MSCI,USD,NYSE,US,MSCI INC,STK,Software,Technology,Decision Support Softwar,COMMON,true,MSCI
+272093,MSFT,USD,NASDAQ,US,MICROSOFT CORP,STK,Software,Technology,Applications Software,COMMON,true,MSFT
+81581011,MSI,USD,NYSE,US,MOTOROLA SOLUTIONS INC,STK,Telecommunications,Communications,Wireless Equipment,COMMON,true,MSI
+2585323,MTB,USD,NYSE,US,M & T BANK CORP,STK,Banks,Financial,Commer Banks-Eastern US,COMMON,true,MTB
+6477908,MTD,USD,NYSE,US,METTLER-TOLEDO INTERNATIONAL,STK,Electronics,Industrial,Instruments-Controls,COMMON,true,MTD
+9939,MU,USD,NASDAQ,US,MICRON TECHNOLOGY INC,STK,Semiconductors,Technology,Electronic Compo-Semicon,COMMON,true,MU
+120643512,NCLH,USD,NYSE,US,NORWEGIAN CRUISE LINE HOLDIN,STK,Leisure Time,"Consumer, Cyclical",Cruise Lines,COMMON,true,NCLH
+29380756,NDAQ,USD,NASDAQ,US,NASDAQ INC,STK,Diversified Finan Serv,Financial,Finance-Other Services,COMMON,true,NDAQ
+272314,NDSN,USD,NASDAQ,US,NORDSON CORP,STK,Machinery-Diversified,Industrial,Machinery-General Indust,COMMON,true,NDSN
+75960201,NEE,USD,NYSE,US,NEXTERA ENERGY INC,STK,Electric,Utilities,Electric-Integrated,COMMON,true,NEE
+10174,NEM,USD,NYSE,US,NEWMONT CORP,STK,Mining,Basic Materials,Gold Mining,COMMON,true,NEM
+15124833,NFLX,USD,NASDAQ,US,NETFLIX INC,STK,Internet,Communications,Internet Content-Entmnt,COMMON,true,NFLX
+10260,NI,USD,NYSE,US,NISOURCE INC,STK,Gas,Utilities,Gas-Distribution,COMMON,true,NI
+10291,NKE,USD,NYSE,US,NIKE INC -CL B,STK,Apparel,"Consumer, Cyclical",Athletic Footwear,COMMON,true,NKE
+10376,NOC,USD,NYSE,US,NORTHROP GRUMMAN CORP,STK,Aerospace/Defense,Industrial,Aerospace/Defense,COMMON,true,NOC
+109911821,NOW,USD,NYSE,US,SERVICENOW INC,STK,Software,Technology,Applications Software,COMMON,true,NOW
+10188791,NRG,USD,NYSE,US,NRG ENERGY INC,STK,Electric,Utilities,Independ Power Producer,COMMON,true,NRG
+10497,NSC,USD,NYSE,US,NORFOLK SOUTHERN CORP,STK,Transportation,Industrial,Transport-Rail,COMMON,true,NSC
+49921110,NTAP,USD,NASDAQ,US,NETAPP INC,STK,Computers,Technology,Computers-Memory Devices,COMMON,true,NTAP
+272565,NTRS,USD,NASDAQ,US,NORTHERN TRUST CORP,STK,Banks,Financial,Fiduciary Banks,COMMON,true,NTRS
+10557,NUE,USD,NYSE,US,NUCOR CORP,STK,Iron/Steel,Basic Materials,Steel-Producers,COMMON,true,NUE
+4815747,NVDA,USD,NASDAQ,US,NVIDIA CORP,STK,Semiconductors,Technology,Electronic Compo-Semicon,COMMON,true,NVDA
+755864,NVR,USD,NYSE,US,NVR INC,STK,Home Builders,"Consumer, Cyclical",Bldg-Residential/Commer,COMMON,false,NVR
+129348130,NWS,USD,NASDAQ,US,NEWS CORP - CLASS B,STK,Media,Communications,Publishing-Newspapers,COMMON,true,NWS
+129348126,NWSA,USD,NASDAQ,US,NEWS CORP - CLASS A,STK,Media,Communications,Publishing-Newspapers,COMMON,true,NWSA
+77791077,NXPI,USD,NASDAQ,US,NXP SEMICONDUCTORS NV,STK,Semiconductors,Technology,Semicon Compo-Intg Circu,COMMON,true,NXPI
+10672,O,USD,NYSE,US,REALTY INCOME CORP,STK,REITS,Financial,REITS-Single Tenant,REIT,true,O
+272667,ODFL,USD,NASDAQ,US,OLD DOMINION FREIGHT LINE,STK,Transportation,Industrial,Transport-Truck,COMMON,true,ODFL
+10794,OKE,USD,NYSE,US,ONEOK INC,STK,Pipelines,Energy,Pipelines,COMMON,true,OKE
+10811,OMC,USD,NYSE,US,OMNICOM GROUP,STK,Advertising,Communications,Advertising Agencies,COMMON,true,OMC
+8677881,ON,USD,NASDAQ,US,ON SEMICONDUCTOR,STK,Semiconductors,Technology,Electronic Compo-Semicon,COMMON,true,ON
+272800,ORCL,USD,NYSE,US,ORACLE CORP,STK,Software,Technology,Enterprise Software/Serv,COMMON,true,ORCL
+82457808,ORLY,USD,NASDAQ,US,O'REILLY AUTOMOTIVE INC,STK,Retail,"Consumer, Cyclical",Retail-Auto Parts,COMMON,true,ORLY
+410755402,OTIS,USD,NYSE,US,OTIS WORLDWIDE CORP,STK,Machinery-Diversified,Industrial,Machinery-General Indust,COMMON,true,OTIS
+10880,OXY,USD,NYSE,US,OCCIDENTAL PETROLEUM CORP,STK,Oil&amp;Gas,Energy,Oil Comp-Explor&amp;Prodtn,COMMON,true,OXY
+110619459,PANW,USD,NASDAQ,US,PALO ALTO NETWORKS INC,STK,Internet,Communications,Internet Security,COMMON,true,PANW
+272942,PAYX,USD,NASDAQ,US,PAYCHEX INC,STK,Software,Technology,Data Processing/Mgmt,COMMON,true,PAYX
+272992,PCAR,USD,NASDAQ,US,PACCAR INC,STK,Auto Manufacturers,"Consumer, Cyclical",Auto-Med&amp;Heavy Duty Trks,COMMON,true,PCAR
+2586035,PCG,USD,NYSE,US,P G & E CORP,STK,Electric,Utilities,Electric-Integrated,COMMON,true,PCG
+11005,PEG,USD,NYSE,US,PUBLIC SERVICE ENTERPRISE GP,STK,Electric,Utilities,Electric-Integrated,COMMON,true,PEG
+11017,PEP,USD,NASDAQ,US,PEPSICO INC,STK,Beverages,"Consumer, Non-cyclical",Beverages-Non-alcoholic,COMMON,true,PEP
+11031,PFE,USD,NYSE,US,PFIZER INC,STK,Pharmaceuticals,"Consumer, Non-cyclical",Medical-Drugs,COMMON,true,PFE
+11032,PFG,USD,NASDAQ,US,PRINCIPAL FINANCIAL GROUP,STK,Insurance,Financial,Life/Health Insurance,COMMON,true,PFG
+11054,PG,USD,NYSE,US,PROCTER & GAMBLE CO/THE,STK,Cosmetics/Personal Care,"Consumer, Non-cyclical",Cosmetics&amp;Toiletries,COMMON,true,PG
+11080,PGR,USD,NYSE,US,PROGRESSIVE CORP,STK,Insurance,Financial,Property/Casualty Ins,COMMON,true,PGR
+11094,PH,USD,NYSE,US,PARKER HANNIFIN CORP,STK,Miscellaneous Manufactur,Industrial,Diversified Manufact Op,COMMON,true,PH
+11109,PHM,USD,NYSE,US,PULTE GROUP INC,STK,Home Builders,"Consumer, Cyclical",Bldg-Residential/Commer,COMMON,true,PHM
+7740411,PKG,USD,NYSE,US,PACKAGING CORP OF AMERICA,STK,Packaging&amp;Containers,Industrial,Containers-Paper/Plastic,COMMON,true,PKG
+88819288,PLD,USD,NYSE,US,PROLOGIS INC,STK,REITS,Financial,REITS-Warehouse/Industr,REIT,true,PLD
+444857009,PLTR,USD,NASDAQ,US,PALANTIR TECHNOLOGIES INC-A,STK,Software,Technology,Enterprise Software/Serv,COMMON,true,PLTR
+49588376,PM,USD,NYSE,US,PHILIP MORRIS INTERNATIONAL,STK,Agriculture,"Consumer, Non-cyclical",Tobacco,COMMON,true,PM
+11240,PNC,USD,NYSE,US,PNC FINANCIAL SERVICES GROUP,STK,Banks,Financial,Super-Regional Banks-US,COMMON,true,PNC
+153068487,PNR,USD,NYSE,US,PENTAIR PLC,STK,Environmental Control,Industrial,Water Treatment Systems,COMMON,true,PNR
+11257,PNW,USD,NYSE,US,PINNACLE WEST CAPITAL,STK,Electric,Utilities,Electric-Integrated,COMMON,true,PNW
+44061838,PODD,USD,NASDAQ,US,INSULET CORP,STK,Healthcare-Products,"Consumer, Non-cyclical",Patient Monitoring Equip,COMMON,true,PODD
+39195389,POOL,USD,NASDAQ,US,POOL CORP,STK,Distribution/Wholesale,"Consumer, Cyclical",Distribution/Wholesale,COMMON,true,POOL
+11295,PPG,USD,NYSE,US,PPG INDUSTRIES INC,STK,Chemicals,Basic Materials,Chemicals-Diversified,COMMON,true,PPG
+661547,PPL,USD,NYSE,US,PPL CORP,STK,Electric,Utilities,Electric-Integrated,COMMON,true,PPL
+13865082,PRU,USD,NYSE,US,PRUDENTIAL FINANCIAL INC,STK,Insurance,Financial,Life/Health Insurance,COMMON,true,PRU
+12002,PSA,USD,NYSE,US,PUBLIC STORAGE,STK,REITS,Financial,REITS-Storage,REIT,true,PSA
+804144296,PSKY,USD,NASDAQ,US,PARAMOUNT SKYDANCE CL B,STK,Media,Communications,Broadcast Serv/Program,COMMON,true,PSKY
+105669270,PSX,USD,NYSE,US,PHILLIPS 66,STK,Oil&amp;Gas,Energy,Oil Refining&amp;Marketing,COMMON,true,PSX
+121507047,PTC,USD,NASDAQ,US,PTC INC,STK,Software,Technology,Applications Software,COMMON,true,PTC
+6608432,PWR,USD,NYSE,US,QUANTA SERVICES INC,STK,Commercial Services,"Consumer, Non-cyclical",Commercial Services,COMMON,true,PWR
+199169591,PYPL,USD,NASDAQ,US,PAYPAL HOLDINGS INC,STK,Commercial Services,"Consumer, Non-cyclical",Commercial Serv-Finance,COMMON,true,PYPL
+824788107,Q,USD,NYSE,US,QNITY ELECTRONICS INC,STK,Chemicals,Basic Materials,Chemicals-Specialty,COMMON,true,Q
+273544,QCOM,USD,NASDAQ,US,QUALCOMM INC,STK,Semiconductors,Technology,Semicon Compo-Intg Circu,COMMON,true,QCOM
+11520,RCL,USD,NYSE,US,ROYAL CARIBBEAN CRUISES LTD,STK,Leisure Time,"Consumer, Cyclical",Cruise Lines,COMMON,true,RCL
+11574,REG,USD,NASDAQ,US,REGENCY CENTERS CORP,STK,REITS,Financial,REITS-Shopping Centers,REIT,true,REG
+273733,REGN,USD,NASDAQ,US,REGENERON PHARMACEUTICALS,STK,Biotechnology,"Consumer, Non-cyclical",Medical-Biomedical/Gene,COMMON,true,REGN
+273815,RF,USD,NYSE,US,REGIONS FINANCIAL CORP,STK,Banks,Financial,Commer Banks-Southern US,COMMON,true,RF
+11656,RJF,USD,NYSE,US,RAYMOND JAMES FINANCIAL INC,STK,Diversified Finan Serv,Financial,Invest Mgmnt/Advis Serv,COMMON,true,RJF
+92306678,RL,USD,NYSE,US,RALPH LAUREN CORP,STK,Apparel,"Consumer, Cyclical",Apparel Manufacturers,COMMON,true,RL
+4817352,RMD,USD,NYSE,US,RESMED INC,STK,Healthcare-Products,"Consumer, Non-cyclical",Respiratory Products,COMMON,true,RMD
+11697,ROK,USD,NYSE,US,ROCKWELL AUTOMATION INC,STK,Machinery-Diversified,Industrial,Industrial Automat/Robot,COMMON,true,ROK
+11700,ROL,USD,NYSE,US,ROLLINS INC,STK,Commercial Services,"Consumer, Non-cyclical",Building-Maint&amp;Service,COMMON,true,ROL
+2585629,ROP,USD,NASDAQ,US,ROPER TECHNOLOGIES INC,STK,Software,Technology,Applications Software,COMMON,true,ROP
+273939,ROST,USD,NASDAQ,US,ROSS STORES INC,STK,Retail,"Consumer, Cyclical",Retail-Apparel/Shoe,COMMON,true,ROST
+6478024,RSG,USD,NYSE,US,REPUBLIC SERVICES INC,STK,Environmental Control,Industrial,Non-hazardous Waste Disp,COMMON,true,RSG
+415342104,RTX,USD,NYSE,US,RTX CORP,STK,Aerospace/Defense,Industrial,Aerospace/Defense,COMMON,true,RTX
+6737,RVTY,USD,NYSE,US,REVVITY INC,STK,Healthcare-Products,"Consumer, Non-cyclical",Diagnostic Equipment,COMMON,true,RVTY
+47965865,SATS,USD,NASDAQ,US,ECHOSTAR CORP-A,STK,Media,Communications,Cable/Satellite TV,COMMON,true,SATS
+262397910,SBAC,USD,NASDAQ,US,SBA COMMUNICATIONS CORP,STK,REITS,Financial,REITS-Diversified,REIT,true,SBAC
+274105,SBUX,USD,NASDAQ,US,STARBUCKS CORP,STK,Retail,"Consumer, Cyclical",Retail-Restaurants,COMMON,true,SBUX
+11905,SCHW,USD,NYSE,US,SCHWAB (CHARLES) CORP,STK,Diversified Finan Serv,Financial,Finance-Invest Bnkr/Brkr,COMMON,true,SCHW
+12120,SHW,USD,NYSE,US,SHERWIN-WILLIAMS CO/THE,STK,Chemicals,Basic Materials,Coatings/Paint,COMMON,true,SHW
+15130038,SJM,USD,NYSE,US,JM SMUCKER CO/THE,STK,Food,"Consumer, Non-cyclical",Food-Confectionery,COMMON,true,SJM
+12200,SLB,USD,NYSE,US,SLB LTD,STK,Oil&amp;Gas Services,Energy,Oil-Field Services,COMMON,true,SLB
+731466419,SMCI,USD,NASDAQ,US,SUPER MICRO COMPUTER INC,STK,Computers,Technology,Computers-Integrated Sys,COMMON,true,SMCI
+12259,SNA,USD,NYSE,US,SNAP-ON INC,STK,Hand/Machine Tools,Industrial,Tools-Hand Held,COMMON,true,SNA
+760250490,SNDK,USD,NASDAQ,US,SANDISK CORP,STK,Computers,Technology,Computers-Memory Devices,COMMON,true,SNDK
+274499,SNPS,USD,NASDAQ,US,SYNOPSYS INC,STK,Software,Technology,Computer Aided Design,COMMON,true,SNPS
+12300,SO,USD,NYSE,US,SOUTHERN CO/THE,STK,Electric,Utilities,Electric-Integrated,COMMON,true,SO
+691984360,SOLV,USD,NYSE,US,SOLVENTUM CORP,STK,Healthcare-Products,"Consumer, Non-cyclical",Medical Products,COMMON,true,SOLV
+2009113,SPG,USD,NYSE,US,SIMON PROPERTY GROUP INC,STK,REITS,Financial,REITS-Regional Malls,REIT,true,SPG
+229629397,SPGI,USD,NYSE,US,S&P GLOBAL INC,STK,Commercial Services,"Consumer, Non-cyclical",Commercial Serv-Finance,COMMON,true,SPGI
+11020,SRE,USD,NYSE,US,SEMPRA,STK,Electric,Utilities,Electric-Distribution,COMMON,true,SRE
+358060563,STE,USD,NYSE,US,STERIS PLC,STK,Healthcare-Products,"Consumer, Non-cyclical",Medical Products,COMMON,true,STE
+6478095,STLD,USD,NASDAQ,US,STEEL DYNAMICS INC,STK,Iron/Steel,Basic Materials,Steel-Producers,COMMON,true,STLD
+2730980,STT,USD,NYSE,US,STATE STREET CORP,STK,Banks,Financial,Fiduciary Banks,COMMON,true,STT
+491932113,STX,USD,NASDAQ,US,SEAGATE TECHNOLOGY HOLDINGS,STK,Computers,Technology,Computers-Memory Devices,COMMON,true,STX
+276066,STZ,USD,NYSE,US,CONSTELLATION BRANDS INC-A,STK,Beverages,"Consumer, Non-cyclical",Brewery,COMMON,true,STZ
+713434903,SW,USD,NYSE,US,SMURFIT WESTROCK PLC,STK,Packaging&amp;Containers,Industrial,Containers-Paper/Plastic,COMMON,true,SW
+73354293,SWK,USD,NYSE,US,STANLEY BLACK & DECKER INC,STK,Hand/Machine Tools,Industrial,Tools-Hand Held,COMMON,true,SWK
+4726021,SWKS,USD,NASDAQ,US,SKYWORKS SOLUTIONS INC,STK,Semiconductors,Technology,Electronic Compo-Semicon,COMMON,true,SWKS
+162231797,SYF,USD,NYSE,US,SYNCHRONY FINANCIAL,STK,Diversified Finan Serv,Financial,Finance-Credit Card,COMMON,true,SYF
+4430948,SYK,USD,NYSE,US,STRYKER CORP,STK,Healthcare-Products,"Consumer, Non-cyclical",Medical Products,COMMON,true,SYK
+12581,SYY,USD,NYSE,US,SYSCO CORP,STK,Food,"Consumer, Non-cyclical",Food-Wholesale/Distrib,COMMON,true,SYY
+37018770,T,USD,NYSE,US,AT&T INC,STK,Telecommunications,Communications,Telephone-Integrated,COMMON,true,T
+33191300,TAP,USD,NYSE,US,MOLSON COORS BEVERAGE CO - B,STK,Beverages,"Consumer, Non-cyclical",Brewery,COMMON,true,TAP
+38285434,TDG,USD,NYSE,US,TRANSDIGM GROUP INC,STK,Aerospace/Defense,Industrial,Aerospace/Defense-Equip,COMMON,true,TDG
+6340773,TDY,USD,NYSE,US,TELEDYNE TECHNOLOGIES INC,STK,Miscellaneous Manufactur,Industrial,Miscellaneous Manufactur,COMMON,true,TDY
+172729810,TECH,USD,NASDAQ,US,BIO-TECHNE CORP,STK,Healthcare-Products,"Consumer, Non-cyclical",Medical Instruments,COMMON,true,TECH
+731466408,TEL,USD,NYSE,US,TE CONNECTIVITY PLC,STK,Electronics,Industrial,Electronic Compo-Misc,COMMON,true,TEL
+12729,TER,USD,NASDAQ,US,TERADYNE INC,STK,Semiconductors,Technology,Semiconductor Equipment,COMMON,true,TER
+393460310,TFC,USD,NYSE,US,TRUIST FINANCIAL CORP,STK,Banks,Financial,Commer Banks-Southern US,COMMON,true,TFC
+6437,TGT,USD,NYSE,US,TARGET CORP,STK,Retail,"Consumer, Cyclical",Retail-Discount,COMMON,true,TGT
+12814,TJX,USD,NYSE,US,TJX COMPANIES INC,STK,Retail,"Consumer, Cyclical",Retail-Major Dept Store,COMMON,true,TJX
+652841542,TKO,USD,NYSE,US,TKO GROUP HOLDINGS INC,STK,Entertainment,"Consumer, Cyclical",Professional Sports,COMMON,true,TKO
+12869,TMO,USD,NYSE,US,THERMO FISHER SCIENTIFIC INC,STK,Healthcare-Products,"Consumer, Non-cyclical",Diagnostic Equipment,COMMON,true,TMO
+125980227,TMUS,USD,NASDAQ,US,T-MOBILE US INC,STK,Telecommunications,Communications,Cellular Telecom,COMMON,true,TMUS
+463654490,TPL,USD,NYSE,US,TEXAS PACIFIC LAND CORP,STK,Oil&amp;Gas,Energy,Oil-US Royalty Trusts,COMMON,true,TPL
+292491487,TPR,USD,NYSE,US,TAPESTRY INC,STK,Apparel,"Consumer, Cyclical",Apparel Manufacturers,COMMON,true,TPR
+81671838,TRGP,USD,NYSE,US,TARGA RESOURCES CORP,STK,Pipelines,Energy,Pipelines,COMMON,true,TRGP
+275294,TRMB,USD,NASDAQ,US,TRIMBLE INC,STK,Electronics,Industrial,Electronic Measur Instr,COMMON,true,TRMB
+275321,TROW,USD,NASDAQ,US,T ROWE PRICE GROUP INC,STK,Diversified Finan Serv,Financial,Invest Mgmnt/Advis Serv,COMMON,true,TROW
+43150617,TRV,USD,NYSE,US,TRAVELERS COS INC/THE,STK,Insurance,Financial,Property/Casualty Ins,COMMON,true,TRV
+6858322,TSCO,USD,NASDAQ,US,TRACTOR SUPPLY COMPANY,STK,Retail,"Consumer, Cyclical",Retail-Gardening Prod,COMMON,true,TSCO
+76792991,TSLA,USD,NASDAQ,US,TESLA INC,STK,Auto Manufacturers,"Consumer, Cyclical",Auto-Cars/Light Trucks,COMMON,true,TSLA
+275405,TSN,USD,NYSE,US,TYSON FOODS INC-CL A,STK,Food,"Consumer, Non-cyclical",Food-Meat Products,COMMON,true,TSN
+406709270,TT,USD,NYSE,US,TRANE TECHNOLOGIES PLC,STK,Building Materials,Industrial,Bldg Prod-Air&amp;Heating,COMMON,true,TT
+248755440,TTD,USD,NASDAQ,US,TRADE DESK INC/THE -CLASS A,STK,Advertising,Communications,Advertising Services,COMMON,true,TTD
+6478131,TTWO,USD,NASDAQ,US,TAKE-TWO INTERACTIVE SOFTWRE,STK,Software,Technology,Entertainment Software,COMMON,true,TTWO
+13096,TXN,USD,NASDAQ,US,TEXAS INSTRUMENTS INC,STK,Semiconductors,Technology,Electronic Compo-Semicon,COMMON,true,TXN
+13101,TXT,USD,NYSE,US,TEXTRON INC,STK,Miscellaneous Manufactur,Industrial,Diversified Manufact Op,COMMON,true,TXT
+13116,TYL,USD,NYSE,US,TYLER TECHNOLOGIES INC,STK,Software,Technology,Enterprise Software/Serv,COMMON,true,TYL
+79498203,UAL,USD,NASDAQ,US,UNITED AIRLINES HOLDINGS INC,STK,Airlines,"Consumer, Cyclical",Airlines,COMMON,true,UAL
+365207014,UBER,USD,NYSE,US,UBER TECHNOLOGIES INC,STK,Internet,Communications,E-Commerce/Services,COMMON,true,UBER
+43274444,UDR,USD,NYSE,US,UDR INC,STK,REITS,Financial,REITS-Apartments,REIT,true,UDR
+13206,UHS,USD,NYSE,US,UNIVERSAL HEALTH SERVICES-B,STK,Healthcare-Services,"Consumer, Non-cyclical",Medical-Hospitals,COMMON,true,UHS
+46970422,ULTA,USD,NASDAQ,US,ULTA BEAUTY INC,STK,Retail,"Consumer, Cyclical",Retail-Perfume&amp;Cosmetics,COMMON,true,ULTA
+13272,UNH,USD,NYSE,US,UNITEDHEALTH GROUP INC,STK,Healthcare-Services,"Consumer, Non-cyclical",Medical-HMO,COMMON,true,UNH
+13284,UNP,USD,NYSE,US,UNION PACIFIC CORP,STK,Transportation,Industrial,Transport-Rail,COMMON,true,UNP
+6231002,UPS,USD,NYSE,US,UNITED PARCEL SERVICE-CL B,STK,Transportation,Industrial,Transport-Services,COMMON,true,UPS
+3629755,URI,USD,NYSE,US,UNITED RENTALS INC,STK,Commercial Services,"Consumer, Non-cyclical",Rental Auto/Equipment,COMMON,true,URI
+11669769,USB,USD,NYSE,US,US BANCORP,STK,Banks,Financial,Super-Regional Banks-US,COMMON,true,USB
+49462172,V,USD,NYSE,US,VISA INC-CLASS A SHARES,STK,Diversified Finan Serv,Financial,Finance-Credit Card,COMMON,true,V
+136254493,VEEV,USD,NYSE,US,VEEVA SYSTEMS INC-CLASS A,STK,Software,Technology,Enterprise Software/Serv,COMMON,true,VEEV
+292080616,VICI,USD,NYSE,US,VICI PROPERTIES INC,STK,REITS,Financial,REITS-Diversified,REIT,true,VICI
+13497,VLO,USD,NYSE,US,VALERO ENERGY CORP,STK,Oil&amp;Gas,Energy,Oil Refining&amp;Marketing,COMMON,true,VLO
+655276622,VLTO,USD,NYSE,US,VERALTO CORP,STK,Environmental Control,Industrial,Water Treatment Systems,COMMON,true,VLTO
+13515,VMC,USD,NYSE,US,VULCAN MATERIALS CO,STK,Building Materials,Industrial,Bldg Prod-Cement/Aggreg,COMMON,true,VMC
+69293559,VRSK,USD,NASDAQ,US,VERISK ANALYTICS INC,STK,Commercial Services,"Consumer, Non-cyclical",Consulting Services,COMMON,true,VRSK
+4173050,VRSN,USD,NASDAQ,US,VERISIGN INC,STK,Internet,Communications,Web Hosting/Design,COMMON,true,VRSN
+402783527,VRT,USD,NYSE,US,VERTIV HOLDINGS CO-A,STK,Machinery-Constr&amp;Mining,Industrial,Machinery-Electric Util,COMMON,true,VRT
+275850,VRTX,USD,NASDAQ,US,VERTEX PHARMACEUTICALS INC,STK,Biotechnology,"Consumer, Non-cyclical",Medical-Biomedical/Gene,COMMON,true,VRTX
+254457731,VST,USD,NYSE,US,VISTRA CORP,STK,Electric,Utilities,Independ Power Producer,COMMON,true,VST
+4044062,VTR,USD,NYSE,US,VENTAS INC.,STK,REITS,Financial,REITS-Health Care,REIT,true,VTR
+454859695,VTRS,USD,NASDAQ,US,VIATRIS INC,STK,Pharmaceuticals,"Consumer, Non-cyclical",Medical-Generic Drugs,COMMON,true,VTRS
+4901,VZ,USD,NYSE,US,VERIZON COMMUNICATIONS INC,STK,Telecommunications,Communications,Telephone-Integrated,COMMON,true,VZ
+661633,WAB,USD,NYSE,US,WABTEC CORP,STK,Machinery-Diversified,Industrial,Machinery-General Indust,COMMON,true,WAB
+1448494,WAT,USD,NYSE,US,WATERS CORP,STK,Healthcare-Products,"Consumer, Non-cyclical",Diagnostic Equipment,COMMON,true,WAT
+554208351,WBD,USD,NASDAQ,US,WARNER BROS DISCOVERY INC,STK,Media,Communications,Broadcast Serv/Program,COMMON,true,WBD
+115324104,WDAY,USD,NASDAQ,US,WORKDAY INC-CLASS A,STK,Software,Technology,Enterprise Software/Serv,COMMON,true,WDAY
+13681,WDC,USD,NASDAQ,US,WESTERN DIGITAL CORP,STK,Computers,Technology,Computers-Memory Devices,COMMON,true,WDC
+198560237,WEC,USD,NYSE,US,WEC ENERGY GROUP INC,STK,Electric,Utilities,Electric-Integrated,COMMON,true,WEC
+207739931,WELL,USD,NYSE,US,WELLTOWER INC,STK,REITS,Financial,REITS-Health Care,REIT,true,WELL
+10375,WFC,USD,NYSE,US,WELLS FARGO & CO,STK,Banks,Financial,Super-Regional Banks-US,COMMON,true,WFC
+13379,WM,USD,NYSE,US,WASTE MANAGEMENT INC,STK,Environmental Control,Industrial,Non-hazardous Waste Disp,COMMON,true,WM
+13805,WMB,USD,NYSE,US,WILLIAMS COS INC,STK,Pipelines,Energy,Pipelines,COMMON,true,WMB
+13824,WMT,USD,NASDAQ,US,WALMART INC,STK,Retail,"Consumer, Cyclical",Retail-Discount,COMMON,true,WMT
+266822,WRB,USD,NYSE,US,WR BERKLEY CORP,STK,Insurance,Financial,Property/Casualty Ins,COMMON,true,WRB
+5019164,WSM,USD,NYSE,US,WILLIAMS-SONOMA INC,STK,Retail,"Consumer, Cyclical",Retail-Home Furnishings,COMMON,true,WSM
+13909,WST,USD,NYSE,US,WEST PHARMACEUTICAL SERVICES,STK,Healthcare-Products,"Consumer, Non-cyclical",Medical Products,COMMON,true,WST
+217947855,WTW,USD,NASDAQ,US,WILLIS TOWERS WATSON PLC,STK,Insurance,Financial,Insurance Brokers,COMMON,true,WTW
+13949,WY,USD,NYSE,US,WEYERHAEUSER CO,STK,REITS,Financial,REITS-Diversified,REIT,true,WY
+16454492,WYNN,USD,NASDAQ,US,WYNN RESORTS LTD,STK,Lodging,"Consumer, Cyclical",Casino Hotels,COMMON,true,WYNN
+10517,XEL,USD,NASDAQ,US,XCEL ENERGY INC,STK,Electric,Utilities,Electric-Integrated,COMMON,true,XEL
+13977,XOM,USD,NYSE,US,EXXON MOBIL CORP,STK,Oil&amp;Gas,Energy,Oil Comp-Integrated,COMMON,true,XOM
+95703740,XYL,USD,NYSE,US,XYLEM INC,STK,Machinery-Diversified,Industrial,Machinery-Pumps,COMMON,true,XYL
+212671971,XYZ,USD,NYSE,US,BLOCK INC,STK,Commercial Services,"Consumer, Non-cyclical",Commercial Serv-Finance,COMMON,true,XYZ
+3206042,YUM,USD,NYSE,US,YUM! BRANDS INC,STK,Retail,"Consumer, Cyclical",Retail-Restaurants,COMMON,true,YUM
+12851783,ZBH,USD,NYSE,US,ZIMMER BIOMET HOLDINGS INC,STK,Healthcare-Products,"Consumer, Non-cyclical",Medical Products,COMMON,true,ZBH
+276304,ZBRA,USD,NASDAQ,US,ZEBRA TECHNOLOGIES CORP-CL A,STK,Office/Business Equip,Technology,Office Automation&amp;Equip,COMMON,true,ZBRA
+121665622,ZTS,USD,NYSE,US,ZOETIS INC,STK,Pharmaceuticals,"Consumer, Non-cyclical",Medical-Drugs,COMMON,true,ZTS

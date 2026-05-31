@@ -7,9 +7,9 @@ import (
 	"os"
 	"time"
 
-	"github.com/bishop-bot/ib-cli/internal/api"
-	"github.com/bishop-bot/ib-cli/internal/config"
-	"github.com/bishop-bot/ib-cli/internal/models"
+	"github.com/bishop-bot/ibcli-go/internal/api"
+	"github.com/bishop-bot/ibcli-go/internal/config"
+	"github.com/bishop-bot/ibcli-go/internal/models"
 	"github.com/spf13/cobra"
 )
 

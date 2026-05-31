@@ -1,7 +1,7 @@
 .PHONY: build test lint clean install run help
 
 # Binary name
-BINARY_NAME=ib-cli
+BINARY_NAME=ibcli
 # Go parameters
 GOCMD=go
 GOBUILD=$(GOCMD) build
@@ -11,7 +11,7 @@ GOFMT=$(GOCMD) fmt
 GOMOD=$(GOCMD) mod
 VERSION ?= dev
 COMMIT ?= unknown
-LDFLAGS := -ldflags "-X github.com/bishop-bot/ib-cli/cmd.Version=$(VERSION) -X github.com/bishop-bot/ib-cli/cmd.Commit=$(COMMIT)"
+LDFLAGS := -ldflags "-X github.com/bishop-bot/ibcli-go/cmd.Version=$(VERSION) -X github.com/bishop-bot/ibcli-go/cmd.Commit=$(COMMIT)"
 
 help: ## Show this help
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-15s\033[0m %s\n", $$1, $$2}'

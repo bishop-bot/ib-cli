@@ -8,10 +8,10 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/bishop-bot/ib-cli/internal/api"
-	"github.com/bishop-bot/ib-cli/internal/auth"
-	"github.com/bishop-bot/ib-cli/internal/config"
-	"github.com/bishop-bot/ib-cli/internal/models"
+	"github.com/bishop-bot/ibcli/internal/api"
+	"github.com/bishop-bot/ibcli/internal/auth"
+	"github.com/bishop-bot/ibcli/internal/config"
+	"github.com/bishop-bot/ibcli/internal/models"
 	"github.com/spf13/cobra"
 	"golang.org/x/term"
 )

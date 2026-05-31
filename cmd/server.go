@@ -7,8 +7,8 @@ import (
 	"os"
 	"time"
 
-	"github.com/bishop-bot/ib-cli/internal/api"
-	"github.com/bishop-bot/ib-cli/internal/config"
+	"github.com/bishop-bot/ibcli/internal/api"
+	"github.com/bishop-bot/ibcli/internal/config"
 	"github.com/spf13/cobra"
 )
 

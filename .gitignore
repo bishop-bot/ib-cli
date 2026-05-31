@@ -5,9 +5,10 @@ bin/
 *.dll
 *.so
 *.dylib
-ib-cli
-ib-cli-*
+ibcli
+ibcli_*
 secdef
+secdef_*
 
 # Test binary, built with `go test -c`
 *.test

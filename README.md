@@ -1,6 +1,6 @@
-# IB-CLI
+# IB CLI
 
-A production-grade CLI for Interactive Broker's Client Portal Web API.
+A CLI for Interactive Broker's Client Portal Web API written in Go.
 
 ## Features
 
@@ -22,28 +22,28 @@ A production-grade CLI for Interactive Broker's Client Portal Web API.
 
 ```bash
 # Build
-go build -o ib-cli .
+go build -o ibcli .
 
 # Copy config example
 cp config.toml.example config.toml
 
 # Authenticate (interactive)
-./ib-cli auth login
+./ibcli auth login
 
 # Or with credentials
-./ib-cli auth login --username YOUR_USER --password YOUR_PASS
+./ibcli auth login --username YOUR_USER --password YOUR_PASS
 
 # Save session for later use
-./ib-cli auth login --username USER --password PASS --save
+./ibcli auth login --username USER --password PASS --save
 
 # Query historical data by symbol (auto-lookup contract ID)
-./ib-cli history AAPL --period 1d --bar 1min
+./ibcli history AAPL --period 1d --bar 1min
 
 # Query by contract ID directly
-./ib-cli history --conid 265598 --exchange SMART --period 1d --bar 1min
+./ibcli history --conid 265598 --exchange SMART --period 1d --bar 1min
 
 # Check status
-./ib-cli auth status
+./ibcli auth status
 ```
 
 ## Configuration
@@ -76,22 +76,22 @@ Manage authentication.
 
 ```bash
 # Interactive login
-./ib-cli auth login
+./ibcli auth login
 
 # Login with credentials
-./ib-cli auth login -u USER -p PASS
+./ibcli auth login -u USER -p PASS
 
 # Login and save encrypted session
-./ib-cli auth login -u USER -p PASS --save
+./ibcli auth login -u USER -p PASS --save
 
 # Restore saved session
-./ib-cli auth login --restore
+./ibcli auth login --restore
 
 # Check status
-./ib-cli auth status
+./ibcli auth status
 
 # Logout
-./ib-cli auth logout
+./ibcli auth logout
 ```
 
 **Session Persistence**: Sessions are encrypted with AES-256-GCM using PBKDF2 key derivation from your master password.
@@ -101,23 +101,23 @@ Query historical market data.
 
 ```bash
 # 1 day of 1-minute bars (lookup by symbol)
-./ib-cli history AAPL --period 1d --bar 1min
+./ibcli history AAPL --period 1d --bar 1min
 
 # By contract ID directly (faster, no lookup)
-./ib-cli history --conid 265598 --exchange SMART --period 1d --bar 1min
+./ibcli history --conid 265598 --exchange SMART --period 1d --bar 1min
 
 # 1 week of 5-minute bars
-./ib-cli history AAPL --period 1w --bar 5min
+./ibcli history AAPL --period 1w --bar 5min
 
 # Include data outside regular trading hours
-./ib-cli history AAPL --period 1w --bar 15min --outside-rth
+./ibcli history AAPL --period 1w --bar 15min --outside-rth
 
 # Output as CSV (header + data rows only)
-./ib-cli history AAPL --period 1d --bar 1min --format csv > data.csv
+./ibcli history AAPL --period 1d --bar 1min --format csv > data.csv
 
 # Use with saved session
-./ib-cli auth login --restore
-./ib-cli history AAPL --period 1w --bar 1min
+./ibcli auth login --restore
+./ibcli history AAPL --period 1w --bar 1min
 ```
 
 **Flags:**
@@ -134,18 +134,18 @@ Manage watchlists.
 
 ```bash
 # List all watchlists
-./ib-cli watchlist list
+./ibcli watchlist list
 
 # Get specific watchlist
-./ib-cli watchlist get <watchlist-id>
+./ibcli watchlist get <watchlist-id>
 ```
 
 ### `server`
 Gateway server commands.
 
 ```bash
-./ib-cli server version
-./ib-cli server services
+./ibcli server version
+./ibcli server services
 ```
 
 ### `contract`
@@ -153,27 +153,27 @@ Contract and security information lookup commands.
 
 ```bash
 # Look up contract by symbol
-./ib-cli contract lookup AAPL
-./ib-cli contract lookup ES --exchange SMART
+./ibcli contract lookup AAPL
+./ibcli contract lookup ES --exchange SMART
 
 # Search security definition by contract ID (GET /trsrv/secdef)
-./ib-cli contract secdef 265598
-./ib-cli contract secdef --symbol AAPL --type STOCK
+./ibcli contract secdef 265598
+./ibcli contract secdef --symbol AAPL --type STOCK
 
 # Get all contract IDs by exchange (GET /trsrv/all-conids)
-./ib-cli contract all-conids --exchange NASDAQ
-./ib-cli contract all-conids --exchange SMART --type STOCK
+./ibcli contract all-conids --exchange NASDAQ
+./ibcli contract all-conids --exchange SMART --type STOCK
 
 # Get detailed contract information by conid (GET /iserver/contract/{conid}/info)
-./ib-cli contract info 265598
-./ib-cli contract info 265598 --exchange NASDAQ
+./ibcli contract info 265598
+./ibcli contract info 265598 --exchange NASDAQ
 
 # Get trading schedule by symbol (GET /trsrv/secdef/schedule)
-./ib-cli contract schedule ES --exchange SMART --type FUT
-./ib-cli contract schedule AAPL
+./ibcli contract schedule ES --exchange SMART --type FUT
+./ibcli contract schedule AAPL
 
 # Get trading schedule for exchange (GET /contract/trading-schedule)
-./ib-cli contract trading-schedule --exchange NASDAQ
+./ibcli contract trading-schedule --exchange NASDAQ
 ```
 
 ## Utility Scripts
@@ -264,7 +264,7 @@ go build -o secdef_instrument ./scripts/secdef_instrument.go
 ## Architecture
 
 ```
-ib-cli/
+ibcli/
 ├── cmd/           # CLI tool commands (cobra)
 │   ├── root.go    # Root command
 │   ├── auth.go    # Authentication commands

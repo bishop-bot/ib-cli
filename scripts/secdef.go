@@ -14,7 +14,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/bishop-bot/ib-cli/internal/config"
+	"github.com/bishop-bot/ibcli/internal/config"
 	"github.com/schollz/progressbar/v3"
 )
 

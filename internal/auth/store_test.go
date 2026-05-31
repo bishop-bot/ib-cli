@@ -4,7 +4,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/bishop-bot/ibcli/internal/models"
+	"github.com/bishop-bot/ibcli-go/internal/models"
 	"golang.org/x/crypto/pbkdf2"
 	"golang.org/x/crypto/sha3"
 )

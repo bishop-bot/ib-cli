@@ -8,8 +8,8 @@ import (
 	"net/url"
 	"testing"
 
-	"github.com/bishop-bot/ibcli/internal/config"
-	"github.com/bishop-bot/ibcli/internal/models"
+	"github.com/bishop-bot/ibcli-go/internal/config"
+	"github.com/bishop-bot/ibcli-go/internal/models"
 )
 
 // TestMarketHistoryRequestParams verifies the correct params are sent to the API.

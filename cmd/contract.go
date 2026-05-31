@@ -9,8 +9,8 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/bishop-bot/ibcli/internal/api"
-	"github.com/bishop-bot/ibcli/internal/config"
+	"github.com/bishop-bot/ibcli-go/internal/api"
+	"github.com/bishop-bot/ibcli-go/internal/config"
 )
 
 var contractCmd = &cobra.Command{

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/bishop-bot/ibcli/internal/config"
+	"github.com/bishop-bot/ibcli-go/internal/config"
 	"github.com/spf13/cobra"
 )
 

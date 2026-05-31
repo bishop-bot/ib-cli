@@ -1,4 +1,4 @@
-module github.com/bishop-bot/ibcli
+module github.com/bishop-bot/ibcli-go
 
 go 1.24
 

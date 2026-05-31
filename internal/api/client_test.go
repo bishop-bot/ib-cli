@@ -4,7 +4,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/bishop-bot/ibcli/internal/config"
+	"github.com/bishop-bot/ibcli-go/internal/config"
 )
 
 func TestNewClient(t *testing.T) {

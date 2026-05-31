@@ -12,8 +12,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/bishop-bot/ibcli/internal/config"
-	"github.com/bishop-bot/ibcli/internal/models"
+	"github.com/bishop-bot/ibcli-go/internal/config"
+	"github.com/bishop-bot/ibcli-go/internal/models"
 )
 
 // Client wraps the IB Client Portal Web API.

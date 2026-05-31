@@ -9,9 +9,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/bishop-bot/ibcli/internal/api"
-	"github.com/bishop-bot/ibcli/internal/config"
-	"github.com/bishop-bot/ibcli/internal/models"
+	"github.com/bishop-bot/ibcli-go/internal/api"
+	"github.com/bishop-bot/ibcli-go/internal/config"
+	"github.com/bishop-bot/ibcli-go/internal/models"
 	"github.com/spf13/cobra"
 )
 

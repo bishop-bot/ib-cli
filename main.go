@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/bishop-bot/ibcli/cmd"
+	"github.com/bishop-bot/ibcli-go/cmd"
 )
 
 func main() {

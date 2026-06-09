@@ -7,8 +7,6 @@ bin/
 *.dylib
 ibcli
 ibcli_*
-secdef
-secdef_*
 
 # Test binary, built with `go test -c`
 *.test

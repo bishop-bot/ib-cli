@@ -185,7 +185,7 @@ Batch fetch security definitions from conid JSON files and export to CSV.
 
 ```bash
 # Build
-go build -o secdef ./scripts/secdef.go
+go build -o secdef ./scripts/secdef
 
 # Fetch all conids for an exchange
 ./secdef --exchange NYSE
@@ -219,16 +219,17 @@ Map CSV output to secdef instrument format for trading systems.
 
 ```bash
 # Build
-go build -o secdef_instrument ./scripts/secdef_instrument.go
+go build -o secdef_instrument ./scripts/secdef_instrument
 
-# Map NYSE CSV to instrument format
-./secdef_instrument --exchange NYSE NYSE_20260524.csv
+# Map CSV to instrument format with MIC code
+./secdef_instrument --mic XNYS ./assets/NYSE_20260524.csv
 
 # Output: NYSE_20260524_mapped.csv
 ```
 
+
 **Flags:**
-- `-e, --exchange` Exchange value (required)
+- `-m, --mic` Market Identifier Code (e.g., XNAS, ENNY)
 
 **Output:** `{input}_mapped.csv` with columns:
 `id`, `symbol`, `name`, `publisher`, `instrument_class`, `currency`, `exchange`, `asset`, `security_type`, etc.
@@ -278,8 +279,8 @@ ibcli/
 │   ├── config/    # Configuration management
 │   └── models/    # Data models
 ├── scripts/       # Utility programs (consume IB API)
-│   ├── secdef.go     # Batch fetch security definitions to CSV
-│   └── secdef_instrument.go # CSV column mapping utility
+│   ├── secdef/       # Batch fetch security definitions to CSV
+│   └── secdef_instrument/ # CSV column mapping utility
 └── main.go
 ```
 

@@ -10,7 +10,7 @@ import (
 )
 
 func main() {
-	exchange := flag.String("exchange", "", "Exchange value for output (e.g., NASDAQ, NYSE)")
+	mic := flag.String("mic", "", "Market Identifier Code (e.g., XNAS, ENNY)")
 	flag.Usage = func() {
 		fmt.Fprintf(os.Stderr, "Usage: %s [options] <input.csv>\n", os.Args[0])
 		fmt.Fprintf(os.Stderr, "Maps a CSV file to secdef instrument format.\n\nOptions:\n")
@@ -24,12 +24,6 @@ func main() {
 		os.Exit(1)
 	}
 
-	if *exchange == "" {
-		fmt.Fprintf(os.Stderr, "Error: --exchange is required\n")
-		flag.Usage()
-		os.Exit(1)
-	}
-
 	inputFile := flag.Arg(0)
 
 	// Generate output filename: {inputFilename}_mapped.csv
@@ -38,7 +32,7 @@ func main() {
 	nameWithoutExt := strings.TrimSuffix(baseName, ext)
 	outputFile := filepath.Join(filepath.Dir(inputFile), nameWithoutExt+"_mapped"+ext)
 
-	if err := mapCSV(inputFile, outputFile, *exchange); err != nil {
+	if err := mapCSV(inputFile, outputFile, *mic); err != nil {
 		fmt.Fprintf(os.Stderr, "Error: %v\n", err)
 		os.Exit(1)
 	}
@@ -46,7 +40,7 @@ func main() {
 	fmt.Printf("Successfully created %s\n", outputFile)
 }
 
-func mapCSV(inputFile, outputFile, exchange string) error {
+func mapCSV(inputFile, outputFile, mic string) error {
 	// Open input file
 	in, err := os.Open(inputFile)
 	if err != nil {
@@ -78,7 +72,7 @@ func mapCSV(inputFile, outputFile, exchange string) error {
 
 	// Define new header
 	newHeader := []string{
-		"id", "symbol", "name", "publisher", "instrument_class", "currency", "exchange",
+		"id", "symbol", "name", "publisher", "instrument_class", "currency", "exchange", "mic",
 		"asset", "security_type", "min_lot_size", "expiration", "max_price_variation",
 		"unit_of_measure_qty", "min_price_increment", "display_factor",
 		"price_display_format", "price_ratio REAL", "underlying_symbol",
@@ -131,7 +125,8 @@ func mapCSV(inputFile, outputFile, exchange string) error {
 			"",                                  // publisher
 			instrumentClass,                     // instrument_class
 			getVal("currency"),                  // currency
-			exchange,                            // exchange (from --exchange flag)
+			getVal("listingExchange"),          // exchange (from listingExchange column)
+			mic,                                 // mic (from --mic flag)
 			"",                                  // asset
 			"",                                  // security_type
 			"",                                  // min_lot_size

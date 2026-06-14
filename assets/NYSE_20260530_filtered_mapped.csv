@@ -1,4 +1,4 @@
-id,symbol,name,publisher,instrument_class,currency,exchange,mic,asset,security_type,min_lot_size,expiration,max_price_variation,unit_of_measure_qty,min_price_increment,display_factor,price_display_format,price_ratio REAL,underlying_symbol,maturity_year,maturity_month,maturity_day,group,tick_rule,strike_price,strike_price_currency
+id,symbol,name,publisher,instrument_class,currency,exchange,mic,asset,security_type,min_lot_size,expiration,max_price_variation,unit_of_measure_qty,min_price_increment,display_factor,price_display_format,price_ratio,underlying_symbol,maturity_year,maturity_month,maturity_day,group,tick_rule,strike_price,strike_price_currency
 5094,BMO,BANK OF MONTREAL,,K,USD,NYSE,XNYS,,,,,,,,,,,,,,,Banks,,,
 15156975,BNS,BANK OF NOVA SCOTIA,,K,USD,NYSE,XNYS,,,,,,,,,,,,,,,Banks,,,
 121811784,TU,TELUS CORP,,K,USD,NYSE,XNYS,,,,,,,,,,,,,,,Telecommunications,,,

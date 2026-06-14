@@ -75,7 +75,7 @@ func mapCSV(inputFile, outputFile, mic string) error {
 		"id", "symbol", "name", "publisher", "instrument_class", "currency", "exchange", "mic",
 		"asset", "security_type", "min_lot_size", "expiration", "max_price_variation",
 		"unit_of_measure_qty", "min_price_increment", "display_factor",
-		"price_display_format", "price_ratio REAL", "underlying_symbol",
+		"price_display_format", "price_ratio", "underlying_symbol",
 		"maturity_year", "maturity_month", "maturity_day", "group",
 		"tick_rule", "strike_price", "strike_price_currency",
 	}
@@ -125,7 +125,7 @@ func mapCSV(inputFile, outputFile, mic string) error {
 			"",                                  // publisher
 			instrumentClass,                     // instrument_class
 			getVal("currency"),                  // currency
-			getVal("listingExchange"),          // exchange (from listingExchange column)
+			getVal("listingExchange"),           // exchange (from listingExchange column)
 			mic,                                 // mic (from --mic flag)
 			"",                                  // asset
 			"",                                  // security_type
@@ -136,7 +136,7 @@ func mapCSV(inputFile, outputFile, mic string) error {
 			"",                                  // min_price_increment
 			"",                                  // display_factor
 			"",                                  // price_display_format
-			"",                                  // price_ratio REAL
+			"",                                  // price_ratio
 			"",                                  // underlying_symbol
 			"",                                  // maturity_year
 			"",                                  // maturity_month
